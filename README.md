@@ -1,6 +1,7 @@
 # ICT 1.3 Smart Health project
 
 ## casus:
+   - Case A. Gipsbehandeling
 
 ## Omschrijving:
 
