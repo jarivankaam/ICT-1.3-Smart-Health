@@ -2,12 +2,19 @@ using UnityEngine;
 
 public class ExplanationText : MonoBehaviour
 {
+    //TimelineItemMedicineChoice
     bool textCloudPillIsActive = false;
     bool textCloudSyringeIsActive = false;
     bool textCloudOintmentIsActive = false;
     public GameObject textCloudPill;
     public GameObject textCloudSyringe;
     public GameObject textCloudOintment;
+
+    //TimelineItemChoiceTablet
+    bool InfoBoxIsActive = false;
+    public GameObject InfoBox;
+
+    //TimelineItemMedicineChoice
     public void CloseTextCloudPill()
     {
         Debug.Log("Pill werkt");
@@ -48,6 +55,20 @@ public class ExplanationText : MonoBehaviour
         {
             textCloudOintment.SetActive(false);
             textCloudOintmentIsActive = false;
+        }
+    }
+   //TimelineItemChoiceTablet
+    public void ShowInfoBox()
+    {
+        if (!InfoBoxIsActive)
+        {
+            InfoBox.SetActive(true);
+            InfoBoxIsActive = true;
+        }
+        else
+        {
+            InfoBox.SetActive(false);
+            InfoBoxIsActive = false;
         }
     }
 }
