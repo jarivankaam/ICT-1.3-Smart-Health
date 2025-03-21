@@ -448,15 +448,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1873842397103394480, guid: 3ce23b1a70806ec4e808d2decda308f4, type: 3}
+  m_Sprite: {fileID: -4741930550087496029, guid: 3d6603898379fda4482c8ca6981ac9e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.34, y: 0.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &154292206
@@ -1710,8 +1710,8 @@ MonoBehaviour:
     nec eleifend. Cras aliquam id urna at dictum. Quisque euismod ex ac nisl tempor,
     non vulputate tortor hendrerit. Nullam vulputate in dolor aliquam laoreet.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a9cf9b5efd6982f48b9d2607d84d6879, type: 2}
+  m_sharedMaterial: {fileID: -320926741035617509, guid: a9cf9b5efd6982f48b9d2607d84d6879, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1846,8 +1846,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: X - Sluiten
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a9cf9b5efd6982f48b9d2607d84d6879, type: 2}
+  m_sharedMaterial: {fileID: -320926741035617509, guid: a9cf9b5efd6982f48b9d2607d84d6879, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1982,8 +1982,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Gebroken armen of benen
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 72e41153d900e724797eb3300bf42f38, type: 2}
+  m_sharedMaterial: {fileID: 4726236490659536756, guid: 72e41153d900e724797eb3300bf42f38, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
