@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TimelineItem1(Video).unity
     guid: 8eefa6d35b31b60449c024850c16c89a
   - enabled: 1
-    path: Assets/Scenes/TimelineItem2.unity
+    path: Assets/Scenes/TimelineItemMedicine.unity
     guid: f4a831c7016896149a0f362eb3a7401c
   - enabled: 1
     path: Assets/Scenes/TimelineItemChoiceTablet.unity
