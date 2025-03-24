@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.95686275, g: 0.95686275, b: 0.95686275, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -775,6 +775,7 @@ GameObject:
   - component: {fileID: 373433232}
   - component: {fileID: 373433234}
   - component: {fileID: 373433233}
+  - component: {fileID: 373433235}
   m_Layer: 5
   m_Name: CastImageWhite
   m_TagString: Untagged
@@ -839,6 +840,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373433231}
   m_CullTransparentMesh: 1
+--- !u!114 &373433235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373433231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: 1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &380357748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,6 +1227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0d17107ed109e54a85a01a5618e5d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoBox: {fileID: 0}
 --- !u!4 &550625129
 Transform:
   m_ObjectHideFlags: 0
@@ -2015,10 +2032,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -4464,11 +4481,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6897554495596379455, guid: 6f37fae204ac3a647a5989896df59dfb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 11
+      value: 241
       objectReference: {fileID: 0}
     - target: {fileID: 6897554495596379455, guid: 6f37fae204ac3a647a5989896df59dfb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -46
+      value: -148
       objectReference: {fileID: 0}
     - target: {fileID: 6897554495596379455, guid: 6f37fae204ac3a647a5989896df59dfb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
