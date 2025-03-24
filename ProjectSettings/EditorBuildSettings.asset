@@ -9,14 +9,35 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/StartScreen.unity
-    guid: bf1d7f13e4023a04fad9e64829e05390
+    path: Assets/Scenes/Agenda Scene.unity
+    guid: 6db7705aa294d7c49ab65f4c4af42e19
+  - enabled: 1
+    path: Assets/Scenes/BigTimeline.unity
+    guid: 657a19e1e9bb5d146b1956797ec32256
+  - enabled: 1
+    path: Assets/Scenes/ManualScreen.unity
+    guid: 48866f6836954274ca3cff7ae9f8a67d
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 3a1ffe14d485cc24fb81b11cceadaa8d
   - enabled: 1
     path: Assets/Scenes/RegisterScreen.unity
     guid: 0c1e8f763b3ac3a439d44b00a3f62574
   - enabled: 1
-    path: Assets/Scenes/ManualScreen.unity
-    guid: 015ff709b4dd17142aa94cd818274555
+    path: Assets/Scenes/StartScreen.unity
+    guid: bf1d7f13e4023a04fad9e64829e05390
+  - enabled: 1
+    path: Assets/Scenes/TimelineItem1(Text).unity
+    guid: 370020ff0d5cc3244944bae8af4024df
+  - enabled: 1
+    path: Assets/Scenes/TimelineItem1(Video).unity
+    guid: 8eefa6d35b31b60449c024850c16c89a
+  - enabled: 1
+    path: Assets/Scenes/TimelineItem2.unity
+    guid: f4a831c7016896149a0f362eb3a7401c
+  - enabled: 1
+    path: Assets/Scenes/TimelineItemChoiceTablet.unity
+    guid: d00db311b0cceca458b641cd717d6d53
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
   m_UseUCBPForAssetBundles: 0

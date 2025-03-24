@@ -2357,6 +2357,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3460655072521370212, guid: 8371bb868b9466b47a635c2089c96c2c, type: 3}
   m_PrefabInstance: {fileID: 982429244}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &982429246 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1397290239716007000, guid: 8371bb868b9466b47a635c2089c96c2c, type: 3}
+  m_PrefabInstance: {fileID: 982429244}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a63478860daebb14d99ddc6089c62a32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1007257673
 GameObject:
   m_ObjectHideFlags: 0
@@ -3486,7 +3497,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1474640788}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 982429246}
+        m_TargetAssemblyTypeName: Navigation, Assembly-CSharp
+        m_MethodName: ChangeSceneBigTimeLine
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1474640788
 MonoBehaviour:
   m_ObjectHideFlags: 0
