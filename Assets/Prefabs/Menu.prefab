@@ -121,7 +121,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4691449636339684006}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1397290239716007000}
+        m_TargetAssemblyTypeName: Navigation, Assembly-CSharp
+        m_MethodName: ChangeSceneDiary
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7353269376247893324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,7 +484,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1574929569765383097}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1397290239716007000}
+        m_TargetAssemblyTypeName: Navigation, Assembly-CSharp
+        m_MethodName: ChangeSceneManual
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3016217112291513834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,7 +633,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6682805179470167021}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1397290239716007000}
+        m_TargetAssemblyTypeName: Navigation, Assembly-CSharp
+        m_MethodName: LogOut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3060149494011771312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -895,7 +931,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 130437039810459510}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1397290239716007000}
+        m_TargetAssemblyTypeName: Navigation, Assembly-CSharp
+        m_MethodName: ChangeSceneAgenda
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7562438234084931822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1866,6 +1914,7 @@ GameObject:
   - component: {fileID: 4625360896299029292}
   - component: {fileID: 1754806041862554297}
   - component: {fileID: 8228243765127569090}
+  - component: {fileID: 1397290239716007000}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -1948,6 +1997,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuButton: {fileID: 0}
   AnimateMenu: {fileID: 3460655072521370212}
+--- !u!114 &1397290239716007000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6983928338670803393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a63478860daebb14d99ddc6089c62a32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8105281733664620392
 GameObject:
   m_ObjectHideFlags: 0
@@ -2205,7 +2266,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3321680836073039976}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1397290239716007000}
+        m_TargetAssemblyTypeName: Navigation, Assembly-CSharp
+        m_MethodName: ChangeSceneEditProfile
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3228524691175797632
 MonoBehaviour:
   m_ObjectHideFlags: 0
