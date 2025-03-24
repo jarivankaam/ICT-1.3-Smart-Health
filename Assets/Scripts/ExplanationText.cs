@@ -1,22 +1,12 @@
 using UnityEngine;
-  
+
 public class ExplanationText : MonoBehaviour
 {
-    //TimelineItemChoice
-    bool InfoBoxIsActive = false;
+    [SerializeField]
+    private GameObject infoBox;
 
-   //TimelineItemChoice
-    public void ShowInfoBox(GameObject infoBox)
+    public void ToggleInfoBox()
     {
-        if (!InfoBoxIsActive)
-        {
-            infoBox.SetActive(true);
-            InfoBoxIsActive = true;
-        }
-        else
-        {
-            infoBox.SetActive(false);
-            InfoBoxIsActive = false;
-        }
+        infoBox.SetActive(!infoBox.activeSelf);
     }
 }
