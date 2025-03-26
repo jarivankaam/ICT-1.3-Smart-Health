@@ -58,4 +58,12 @@ public class Navigation : MonoBehaviour
     {
         SceneManager.LoadScene("Timelineitem1(Video)");
     }
+    public void SwitchToVideo()
+    {
+        SceneManager.LoadScene("Timelineitem1(Video)");
+    }
+    public void SwitchToText()
+    {
+        SceneManager.LoadScene("Timelineitem1(Text)");
+    }
 }
