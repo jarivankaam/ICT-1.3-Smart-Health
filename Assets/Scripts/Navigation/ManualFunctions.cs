@@ -3,9 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class Manual : MonoBehaviour
 {
+    private bool accesTokenNotNull = false;
     public void CloseManual()
     {
-        SceneManager.LoadScene(0);
-        Debug.Log("loading main scene");
+        if (!accesTokenNotNull)
+        {
+            SceneManager.LoadScene("StartScreen");
+            Debug.Log("loading main scene");
+        }
+        else
+        {
+            SceneManager.LoadScene("BigTimeline");
+            Debug.Log("loading Timeline");
+        }
     }
 }
