@@ -6,7 +6,7 @@ public class Navigation : MonoBehaviour
 {
     public void ChangeSceneEditProfile()
     {
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("EditProfile");
     }
     public void ChangeSceneManual()
     {
@@ -18,6 +18,7 @@ public class Navigation : MonoBehaviour
     }
     public void LogOut()
     {
+        SceneManager.LoadScene("StartScreen");
         //code voor Logout
     }
     public void ChangeSceneAgenda()
