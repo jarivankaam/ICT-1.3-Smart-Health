@@ -14,7 +14,7 @@ public class Navigation : MonoBehaviour
     }
     public void ChangeSceneDiary()
     {
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("Diary");
     }
     public void LogOut()
     {
