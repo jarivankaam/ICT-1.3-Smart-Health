@@ -7,8 +7,8 @@ using System;
 
 public class APIClient : MonoBehaviour
 {
-    string token;
-    string Email;
+    private string _accestoken;
+    private string Email;
     public static APIClient Instance { get; private set; }
     void Awake()
     {
@@ -39,7 +39,7 @@ public class APIClient : MonoBehaviour
         }
 
     }
-    public async Task<string> Login(string email, string password)
+    public async Task Login(string email, string password)
     {
         if (Email != email)
         {
@@ -56,14 +56,9 @@ public class APIClient : MonoBehaviour
         var responseDto = JsonUtility.FromJson<PostLoginResponseDto>(response);
         if (responseDto != null)
         {
-            token = responseDto.accessToken;
-            SceneManager.LoadScene("WorldSelection");
-            return "Succes";
+            _accestoken = responseDto.accessToken;
         }
-        else
-        {
-            return null;
-        }
+        
     }
     public async Task Logout()
     {
@@ -75,8 +70,7 @@ public class APIClient : MonoBehaviour
         var response = await PerformApiCall("https://localhost:7032/account/logout", "POST", jsondata, token);
         if (response != null)
         {
-            token = "";
-            SceneManager.LoadScene("StartScreen");
+            accestoken = "";
         }
     }
     private async Task<string> PerformApiCall(string url, string method, string jsonData = null, string token = null)
