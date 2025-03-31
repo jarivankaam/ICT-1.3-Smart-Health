@@ -30,40 +30,53 @@ public class Navigation : MonoBehaviour
         SceneManager.LoadScene("BigTimeline");
     }
     // Timeline Navigation Methods
-    public void Checkin()
+    public void CheckinVideo()
     {
-        SceneManager.LoadScene("Timelineitem1(Video)");
+        SceneManager.LoadScene("Controle(Video)");
     }
-    public void AtTheDoctor()
+    public void AtTheDoctorVideo()
     {
-        SceneManager.LoadScene("Timelineitem1(Video)");
+        SceneManager.LoadScene("BijDeArts(Video)");
     }
     public void Cast()
     {
         SceneManager.LoadScene("TimelineitemChoiceTablet");
     }
-    public void Operation()
+    public void OperationVideo()
     {
-        SceneManager.LoadScene("Timelineitem1(Video)");
+        SceneManager.LoadScene("Operatie(Video)");
     }
     public void Medication()
     {
         SceneManager.LoadScene("TimelineitemMedicine");
     }
-    public void AfterCare()
+    public void AfterCareVideo()
     {
-        SceneManager.LoadScene("Timelineitem1(Video)");
+        SceneManager.LoadScene("Nazorg(Video)");
     }
-    public void CheckinAtTheDoctor()
+    public void CheckinAtTheDoctorVideo()
     {
-        SceneManager.LoadScene("Timelineitem1(Video)");
+        SceneManager.LoadScene("ControleBijDeArts(Video)");
     }
-    public void SwitchToVideo()
+    public void CheckinText()
     {
-        SceneManager.LoadScene("Timelineitem1(Video)");
+        SceneManager.LoadScene("Controle(Text)");
     }
-    public void SwitchToText()
+    public void AtTheDoctorText()
     {
-        SceneManager.LoadScene("Timelineitem1(Text)");
+        SceneManager.LoadScene("BijDeArts(Text)");
     }
+    public void OperationText()
+    {
+        SceneManager.LoadScene("Operatie(Text)");
+    }
+    public void AfterCareText()
+    {
+        SceneManager.LoadScene("Nazorg(Text)");
+    }
+    public void CheckinAtTheDoctorText()
+    {
+        SceneManager.LoadScene("ControleBijDeArts(Text)");
+    }
+
 }

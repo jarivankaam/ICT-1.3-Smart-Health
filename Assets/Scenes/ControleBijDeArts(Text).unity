@@ -538,7 +538,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1801994406}
         m_TargetAssemblyTypeName: Navigation, Assembly-CSharp
-        m_MethodName: SwitchToVideo
+        m_MethodName: AfterCareText
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -686,7 +686,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1801994406}
         m_TargetAssemblyTypeName: Navigation, Assembly-CSharp
-        m_MethodName: SwitchToVideo
+        m_MethodName: ChangeSceneBigTimeLine
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -950,7 +950,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1801994406}
         m_TargetAssemblyTypeName: Navigation, Assembly-CSharp
-        m_MethodName: SwitchToVideo
+        m_MethodName: CheckinAtTheDoctorVideo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

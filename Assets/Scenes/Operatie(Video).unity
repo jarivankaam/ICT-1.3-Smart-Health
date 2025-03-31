@@ -1057,7 +1057,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 56774043}
         m_TargetAssemblyTypeName: Navigation, Assembly-CSharp
-        m_MethodName: SwitchToText
+        m_MethodName: OperationText
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
