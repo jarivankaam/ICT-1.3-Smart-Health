@@ -22,7 +22,7 @@ public class APIClient : MonoBehaviour
         }
         DontDestroyOnLoad(this);
     }
-    public async void Register(string email, string password)
+    public async Task Register(string email, string password)
     {
         Email = email;
         var request = new PostRegisterRequestDto()
@@ -32,12 +32,7 @@ public class APIClient : MonoBehaviour
         };
         var jsondata = JsonUtility.ToJson(request);
         var response = await PerformApiCall("https://localhost:7032/account/register", "POST", jsondata);
-        var login = await Login(email, password);
-        if (login == null)
-        {
-            Debug.Log("Login failed");
-        }
-
+        await Login(email, password);
     }
     public async Task Login(string email, string password)
     {
@@ -67,10 +62,10 @@ public class APIClient : MonoBehaviour
             Email = Email
         };
         var jsondata = JsonUtility.ToJson(request);
-        var response = await PerformApiCall("https://localhost:7032/account/logout", "POST", jsondata, token);
+        var response = await PerformApiCall("https://localhost:7032/account/logout", "POST", jsondata, _accestoken);
         if (response != null)
         {
-            accestoken = "";
+            _accestoken = "";
         }
     }
     private async Task<string> PerformApiCall(string url, string method, string jsonData = null, string token = null)
