@@ -30,10 +30,10 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScreen.unity
     guid: bf1d7f13e4023a04fad9e64829e05390
   - enabled: 1
-    path: Assets/Scenes/TimelineItem1(Text).unity
+    path: Assets/Scenes/ControleBijDeArts(Text).unity
     guid: 370020ff0d5cc3244944bae8af4024df
   - enabled: 1
-    path: Assets/Scenes/TimelineItem1(Video).unity
+    path: Assets/Scenes/ControleBijDeArts(Video).unity
     guid: 8eefa6d35b31b60449c024850c16c89a
   - enabled: 1
     path: Assets/Scenes/TimelineItemMedicine.unity
