@@ -1,4 +1,3 @@
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,10 +15,9 @@ public class Navigation : MonoBehaviour
     {
         SceneManager.LoadScene("Diary");
     }
-    public void LogOut()
+    public async void LogOut()
     {
-        SceneManager.LoadScene("StartScreen");
-        //code voor Logout
+        await APIClient.Instance.Logout();
     }
     public void ChangeSceneAgenda()
     {

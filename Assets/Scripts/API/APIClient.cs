@@ -7,10 +7,15 @@ using System;
 
 public class APIClient : MonoBehaviour
 {
-    private string _accestoken;
-    private string Email;
+    [SerializeField] private string _baseUrl = "https://localhost:7109";
+    private UserData _user = new UserData();
+    public string GetAccessToken() => _user.AccessToken;
+    public string GetRefreshToken() => _user.RefreshToken;
+    public string GetEmail() => _user.Email;
     public static APIClient Instance { get; private set; }
-    void Awake()
+
+    // Prevents destroying the ApiClient instance
+    public void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -22,52 +27,102 @@ public class APIClient : MonoBehaviour
         }
         DontDestroyOnLoad(this);
     }
+
+    // Registering a new (auth) and (dbo) user
     public async Task Register(string email, string password)
     {
-        Email = email;
         var request = new PostRegisterRequestDto()
         {
             email = email,
             password = password
         };
         var jsondata = JsonUtility.ToJson(request);
-        var response = await PerformApiCall("https://localhost:7032/account/register", "POST", jsondata);
-        await Login(email, password);
-    }
-    public async Task Login(string email, string password)
-    {
-        if (Email != email)
+        var response = await PerformApiCall($"{_baseUrl}/custom/Auth/register", "POST", jsondata);
+
+        if (response == null)
         {
-            Email = email;
+            Debug.Log("Failed to register a new user");
+            return;
         }
 
+        await Login(email, password);
+    }
+
+    // Login
+    public async Task Login(string email, string password)
+    {
         var request = new PostLoginRequestDto()
         {
             email = email,
             password = password
         };
+
         var jsondata = JsonUtility.ToJson(request);
-        var response = await PerformApiCall("https://localhost:7032/account/login", "POST", jsondata);
+        var response = await PerformApiCall($"{_baseUrl}/auth/login", "POST", jsondata);
         var responseDto = JsonUtility.FromJson<PostLoginResponseDto>(response);
+
+        // Filling all user data
         if (responseDto != null)
         {
-            _accestoken = responseDto.accessToken;
+            _user.AccessToken = responseDto.accessToken;
+            _user.RefreshToken = responseDto.refreshToken;
+            _user.Email = email;
+            await GetIdentityUserID();
+            await GetUserData();
         }
-        
     }
+
+    // Get Identity User ID
+    public async Task GetIdentityUserID()
+    {
+        var response = await PerformApiCall($"{_baseUrl}/api/User/CurrentUser", "GET", null);
+        
+        if (response == null)
+        {
+            Debug.Log("Failed to get Identity User ID");
+        }
+
+        _user.IdentityUserID = Guid.Parse(response);
+    }
+
+    // Get User ID
+    public async Task GetUserData()
+    {
+        var request = new PostIdentityUserIDRequestDto()
+        {
+            IdentityUserID = _user.IdentityUserID,
+        };
+        var jsondata = JsonUtility.ToJson(request);
+        var response = await PerformApiCall($"{_baseUrl}/api/User", "GET", jsondata);
+        var responseDto = JsonUtility.FromJson<PostIdentityUserIDResponseDto>(response);
+
+        if (responseDto != null)
+        {
+            Debug.Log("Failed to get all user data");
+            _user.UserID = Guid.Parse(responseDto.ID);
+            _user.DisplayName = responseDto.DisplayName;
+            _user.ProfilePhotoPath = responseDto.ProfilePhotoPath;
+        }
+    }
+
+    // Logout the user
     public async Task Logout()
     {
         var request = new PostLogoutRequestDto()
         {
-            Email = Email
+            Email = _user.Email
         };
         var jsondata = JsonUtility.ToJson(request);
-        var response = await PerformApiCall("https://localhost:7032/account/logout", "POST", jsondata, _accestoken);
-        if (response != null)
-        {
-            _accestoken = "";
-        }
+        var response = await PerformApiCall($"{_baseUrl}/auth/logout", "POST", jsondata, _user.AccessToken);
+
+        _user.AccessToken = null;
+        _user.RefreshToken = null;
+        _user.Email = null;
+
+        SceneManager.LoadScene("StartScreen");
     }
+
+    // API call
     private async Task<string> PerformApiCall(string url, string method, string jsonData = null, string token = null)
     {
         using (UnityWebRequest request = new UnityWebRequest(url, method))
