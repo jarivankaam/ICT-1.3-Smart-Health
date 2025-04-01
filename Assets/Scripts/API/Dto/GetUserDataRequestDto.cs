@@ -1,6 +1,6 @@
 using System;
 
-public class PostIdentityUserIDRequestDto
+public class GetUserDataRequestDto
 {
     public Guid IdentityUserID;
 }

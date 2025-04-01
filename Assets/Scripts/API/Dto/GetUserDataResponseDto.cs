@@ -1,4 +1,4 @@
-public class PostIdentityUserIDResponseDto
+public class GetUserDataResponseDto
 {
     public string ID;
     public string IdentityUserID;

@@ -67,42 +67,126 @@ public class APIClient : MonoBehaviour
             _user.AccessToken = responseDto.accessToken;
             _user.RefreshToken = responseDto.refreshToken;
             _user.Email = email;
-            await GetIdentityUserID();
-            await GetUserData();
+            await InitializeUserData();
         }
+    }
+
+    // Initialize User Data
+    public async Task InitializeUserData()
+    {
+        // Getting Identity User ID
+        _user.IdentityUserID = await GetIdentityUserID();
+
+        Debug.Log("=== User Data ===");
+        Debug.Log($"IdentityUserID: {_user.IdentityUserID}");
+        Debug.Log($"AccessToken: {_user.AccessToken}");
+        Debug.Log($"RefreshToken: {_user.RefreshToken}");
+        Debug.Log($"Email: {_user.Email}");
+
+        // Getting User data [HIER GEBLEVEN]
+        var userData = await GetUserData();
+        _user.UserID = Guid.Parse(userData.ID);
+        _user.DisplayName = userData.DisplayName;
+        _user.ProfilePhotoPath = userData.ProfilePhotoPath;
+
+        // Getting Dairy Data
+        var dairyData = await GetDairyData();
+        _user.DairyId = Guid.Parse(dairyData.ID);
+        _user.DairyContent = dairyData.Content;
+
+        // Getting TimeLine Data
+        var timeLineData = await GetTimeLineData();
+        _user.TimeLineId = Guid.Parse(timeLineData.ID);
+        _user.TimeLineName = timeLineData.Name;
+        _user.TimeLineRoute = timeLineData.routeType;
+
+        LogUserData();
+    }
+
+    // Method to log all properties of UserData to the console
+    public void LogUserData()
+    {
+        Debug.Log("=== User Data ===");
+        Debug.Log($"UserID: {_user.UserID}");
+        Debug.Log($"IdentityUserID: {_user.IdentityUserID}");
+        Debug.Log($"AccessToken: {_user.AccessToken}");
+        Debug.Log($"RefreshToken: {_user.RefreshToken}");
+        Debug.Log($"Email: {_user.Email}");
+
+        Debug.Log("\n=== User Settings ===");
+        Debug.Log($"ProfilePhotoPath: {_user.ProfilePhotoPath}");
+        Debug.Log($"DisplayName: {_user.DisplayName}");
+
+        Debug.Log("\n=== User Dairy ===");
+        Debug.Log($"DairyId: {_user.DairyId}");
+        Debug.Log($"DairyContent: {_user.DairyContent}");
+
+        Debug.Log("\n=== User TimeLine ===");
+        Debug.Log($"TimeLineId: {_user.TimeLineId}");
+        Debug.Log($"TimeLineName: {_user.TimeLineName}");
+        Debug.Log($"TimeLineRoute: {_user.TimeLineRoute}");
     }
 
     // Get Identity User ID
-    public async Task GetIdentityUserID()
+    public async Task<Guid> GetIdentityUserID()
     {
-        var response = await PerformApiCall($"{_baseUrl}/api/User/CurrentUser", "GET", null);
-        
+        var response = await PerformApiCall($"{_baseUrl}/api/User/CurrentUser", "GET", null, _user.AccessToken);
+
         if (response == null)
         {
             Debug.Log("Failed to get Identity User ID");
+            return Guid.Empty;
         }
 
-        _user.IdentityUserID = Guid.Parse(response);
+        var cleanedResponse = response.Replace("\"", "");
+        return Guid.Parse(cleanedResponse);
     }
 
     // Get User ID
-    public async Task GetUserData()
+    public async Task<GetUserDataResponseDto> GetUserData()
     {
-        var request = new PostIdentityUserIDRequestDto()
+        var request = new GetUserDataRequestDto()
         {
-            IdentityUserID = _user.IdentityUserID,
+            IdentityUserID = _user.IdentityUserID
         };
         var jsondata = JsonUtility.ToJson(request);
-        var response = await PerformApiCall($"{_baseUrl}/api/User", "GET", jsondata);
-        var responseDto = JsonUtility.FromJson<PostIdentityUserIDResponseDto>(response);
+        var response = await PerformApiCall($"{_baseUrl}/api/User/{_user.IdentityUserID}", "GET", jsondata, _user.AccessToken);
+        var responseDto = JsonUtility.FromJson<GetUserDataResponseDto>(response);
 
-        if (responseDto != null)
+        if (responseDto == null)
         {
             Debug.Log("Failed to get all user data");
-            _user.UserID = Guid.Parse(responseDto.ID);
-            _user.DisplayName = responseDto.DisplayName;
-            _user.ProfilePhotoPath = responseDto.ProfilePhotoPath;
         }
+
+        return responseDto;
+    }
+
+    // Get Dairy data by the user ID
+    public async Task<GetDairyDataResponseDto> GetDairyData()
+    {
+        var response = await PerformApiCall($"{_baseUrl}/api/Dairy/{_user.UserID}", "GET", null, _user.AccessToken);
+        var responseDto = JsonUtility.FromJson<GetDairyDataResponseDto>(response);
+
+        if (responseDto == null)
+        {
+            Debug.Log("Failed to get dairy data");
+        }
+
+        return responseDto;
+    }
+
+    // Get TimeLine data by the user ID
+    public async Task<GetTimeLineDataResponseDto> GetTimeLineData()
+    {
+        var response = await PerformApiCall($"{_baseUrl}/api/Timeline/{_user.UserID}", "GET", null, _user.AccessToken);
+        var responseDto = JsonUtility.FromJson<GetTimeLineDataResponseDto>(response);
+
+        if (responseDto == null)
+        {
+            Debug.Log("Failed to get time line data");
+        }
+
+        return responseDto;
     }
 
     // Logout the user
@@ -144,28 +228,13 @@ public class APIClient : MonoBehaviour
             await request.SendWebRequest();
             if (request.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("API-aanroep is successvol: ");
+                Debug.Log("API-aanroep is successvol: " + request.downloadHandler.text);
 
                 return request.downloadHandler.text;
-
             }
             else
             {
-                if (request.error == "HTTP/1.1 400 Bad Request")
-                {
-
-                    Debug.Log("Request Not good");
-                }
-                else if (request.error == "HTTP/1.1 401 Unauthorized")
-                {
-                    Debug.Log("Not Authorized");
-                    Debug.Log(token);
-
-                }
-                else
-                {
-                    Debug.Log("API-aanroep Failed: " + request.error);
-                }
+                Debug.Log("Fout bij API-aanroep: " + request.error);
                 return null;
             }
         }

@@ -14,9 +14,11 @@ public class UserData
     public string DisplayName { get; set; }
 
     // User Dairy
+    public Guid DairyId { get; set; }
     public string DairyContent { get; set; }
 
     // User TimeLine Data
+    public Guid TimeLineId { get; set; }
     public string TimeLineName { get; set; }
     public bool TimeLineRoute { get; set; }
 } 
