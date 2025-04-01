@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class HoverScale : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
@@ -25,11 +26,24 @@ public class HoverScale : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnSelect(BaseEventData eventData)
     {
+        Outline outline = gameObject.GetComponent<Outline>();
+        if (outline == null)
+        {
+            outline = gameObject.AddComponent<Outline>();
+        }
+
+        outline.effectColor = Color.black; 
+        outline.effectDistance = new Vector2(5, 5);
         transform.DOScale(originalScale * scaleMultiplier, duration);
     }
 
     public void OnDeselect(BaseEventData eventData)
     {
+        Outline outline = gameObject.GetComponent<Outline>();
+        if (outline != null)
+        {
+            Destroy(outline);
+        }
         transform.DOScale(originalScale, duration);
     }
 }
