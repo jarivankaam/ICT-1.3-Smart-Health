@@ -42,6 +42,14 @@ public class Navigation : MonoBehaviour
     {
         SceneManager.LoadScene("TimelineitemChoiceTablet");
     }
+    public void CastText()
+    {
+        SceneManager.LoadScene("Gips(Text)");
+    }
+    public void CastVideo()
+    {
+        SceneManager.LoadScene("Gips(Video)");
+    }
     public void OperationVideo()
     {
         SceneManager.LoadScene("Operatie(Video)");

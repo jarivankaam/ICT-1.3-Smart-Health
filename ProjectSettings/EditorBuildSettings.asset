@@ -68,6 +68,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Operatie(Video).unity
     guid: 07a40bfcc7bafc34488db9bf37358b44
+  - enabled: 1
+    path: Assets/Scenes/Gips(Text).unity
+    guid: 33d4c0537210fce418df3778e955590e
+  - enabled: 1
+    path: Assets/Scenes/Gips(Video).unity
+    guid: 5bb00684856467246a14bfb3843af335
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
   m_UseUCBPForAssetBundles: 0
