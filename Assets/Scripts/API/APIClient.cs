@@ -210,7 +210,7 @@ public class APIClient : MonoBehaviour
     }
 
     // Get TimeLine data by the user ID
-    public async Task GetTimeLineData()
+    public async Task<GetTimeLineDataResponseDto> GetTimeLineData()
     {
         var response = await PerformApiCall($"{_baseUrl}/api/Timeline/{User.UserID}", "GET", null, User.AccessToken);
         var responseDto = JsonUtility.FromJson<GetTimeLineDataResponseDto>(response);
@@ -219,7 +219,7 @@ public class APIClient : MonoBehaviour
         {
             Debug.Log("Failed to get timeline data");
         }
-
+        return responseDto;
     }
 
     // Create new TimeLine
@@ -242,7 +242,7 @@ public class APIClient : MonoBehaviour
 
         return responseDto;
     }
-    public async Task<PostNewTimeLineResponseDto> PutUpdateTimeLine()
+    public async Task PutUpdateTimeLine()
     {
         var request = new PostChangeTimelineRequestDto()
         {
@@ -260,7 +260,6 @@ public class APIClient : MonoBehaviour
             Debug.Log("Failed to create new time line");
         }
 
-        return responseDto;
     }
 
     // Logout the user
