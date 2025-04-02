@@ -1375,7 +1375,6 @@ RectTransform:
   - {fileID: 1085951896}
   - {fileID: 794779340}
   - {fileID: 586504377}
-  - {fileID: 1758120798}
   m_Father: {fileID: 154292207}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1681,6 +1680,7 @@ RectTransform:
   m_Children:
   - {fileID: 1548673286}
   - {fileID: 68521621}
+  - {fileID: 1758120798}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2430,7 +2430,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1318767597}
+    m_TransformParent: {fileID: 1376061830}
     m_Modifications:
     - target: {fileID: 2176088835570091103, guid: 8371bb868b9466b47a635c2089c96c2c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
