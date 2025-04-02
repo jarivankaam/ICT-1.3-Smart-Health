@@ -10,7 +10,7 @@ public class ChangeInput : MonoBehaviour
     public List<Selectable> tabOrder;
     public List<Selectable> tabOrderMenu;
     public Button submitButton;
-    public bool isMenuActive = false;
+    private bool isMenuActive = false;
     private bool hasTabbed = false;
 
     public void Start()
