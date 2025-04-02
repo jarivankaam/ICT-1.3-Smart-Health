@@ -237,7 +237,7 @@ public class APIClient : MonoBehaviour
         {
             Debug.Log("Failed to get timeline data");
         }
-
+        
         return responseDto;
     }
 
@@ -261,7 +261,7 @@ public class APIClient : MonoBehaviour
 
         return responseDto;
     }
-    public async Task<PostNewTimeLineResponseDto> PutUpdateTimeLine()
+    public async Task PutUpdateTimeLine()
     {
         var request = new PostChangeTimelineRequestDto()
         {
@@ -279,7 +279,6 @@ public class APIClient : MonoBehaviour
             Debug.Log("Failed to create new time line");
         }
 
-        return responseDto;
     }
 
     // Logout the user
