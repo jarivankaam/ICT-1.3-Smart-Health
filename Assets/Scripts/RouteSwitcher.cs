@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class RouteSwitcher : MonoBehaviour
     public TMP_Text chosenRoute;
     public GameObject RouteA;
     public GameObject RouteB;
-    public bool isRouteA = true;
+    public bool isRouteB = false;
     public void Start()
     {
         RouteA.SetActive(true);
@@ -15,19 +16,23 @@ public class RouteSwitcher : MonoBehaviour
     }
     public void ChangeRoute()
     {
-        if (isRouteA)
+        if (!isRouteB)
         {
             chosenRoute.text = "Route B";
-            isRouteA = false;
+            isRouteB = true;
             RouteB.SetActive(true);
             RouteA.SetActive(false);
+            APIClient.Instance.User.TimeLineRoute = isRouteB;
+            APIClient.Instance.PutUpdateTimeLine();
         }
         else
         {
             chosenRoute.text = "Route A";
-            isRouteA = true;
+            isRouteB = false;
             RouteA.SetActive(true);
             RouteB.SetActive(false);
+            APIClient.Instance.User.TimeLineRoute = isRouteB;
+            APIClient.Instance.PutUpdateTimeLine();
         }
     }
 }
