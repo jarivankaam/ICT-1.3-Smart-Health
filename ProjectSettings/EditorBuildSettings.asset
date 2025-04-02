@@ -74,6 +74,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Gips(Video).unity
     guid: 5bb00684856467246a14bfb3843af335
+  - enabled: 1
+    path: Assets/Scenes/ManualScreen2.unity
+    guid: 47f75a7c618a11a4e9bb5bfc0e7fc0eb
+  - enabled: 1
+    path: Assets/Scenes/ManualScreen3.unity
+    guid: 2db52566897017d47afe019df56f5abb
+  - enabled: 1
+    path: Assets/Scenes/ManualScreen4.unity
+    guid: db5edf83512410145a54dbe87a572671
+  - enabled: 1
+    path: Assets/Scenes/ManualScreen5.unity
+    guid: c27f87020dafefa4b8e32787bf2177e0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
   m_UseUCBPForAssetBundles: 0

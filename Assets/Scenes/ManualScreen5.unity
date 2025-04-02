@@ -133,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5236070136908926390, guid: 65c97fd29761f644b8eb4dd26f73a251, type: 3}
       propertyPath: m_text
-      value: TIjdlijn
+      value: Tijdlijn
       objectReference: {fileID: 0}
     - target: {fileID: 5236070136908926390, guid: 65c97fd29761f644b8eb4dd26f73a251, type: 3}
       propertyPath: m_fontSize
@@ -1065,15 +1065,15 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Kindvriendelijke
 
-        Informatie'
+        informatie'
       objectReference: {fileID: 0}
     - target: {fileID: 5236070136908926390, guid: 65c97fd29761f644b8eb4dd26f73a251, type: 3}
       propertyPath: m_fontSize
-      value: 22
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5236070136908926390, guid: 65c97fd29761f644b8eb4dd26f73a251, type: 3}
       propertyPath: m_fontSizeBase
-      value: 22
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6690233807061257866, guid: 65c97fd29761f644b8eb4dd26f73a251, type: 3}
       propertyPath: m_Pivot.x
@@ -2077,13 +2077,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Welkom bij de Smart-Health APP!
+  m_text: 'Extra Afspraken:
 
-    Deze app helpt ouders en kinderen
-    met inzicht krijgen in hun medische traject bij gebroken botten.
+    Als uw dokter een extra afspraak inplant is dit
+    geen probleem.
 
-    Gebruik
-    onderstaande knoppen om meer te leren over hoe de app werkt!'
+    u kunt deze makkelijk toevoegen in het menu via "Afspraak
+    toevoegen".
+
+    hier kan u vervolgens de naam en datum toevoegen.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9cf9b5efd6982f48b9d2607d84d6879, type: 2}
   m_sharedMaterial: {fileID: -320926741035617509, guid: a9cf9b5efd6982f48b9d2607d84d6879, type: 2}
@@ -2676,8 +2678,8 @@ Transform:
   m_GameObject: {fileID: 1987903119}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2948, y: 1.26, z: 9.926924}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalPosition: {x: 2.6, y: 1.4, z: 9.926924}
+  m_LocalScale: {x: 1.0485001, y: 0.9075, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 68521621}
@@ -2726,7 +2728,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6470746511081064040, guid: 3c82cb7a17cb8834390a2a94763cc6a9, type: 3}
+  m_Sprite: {fileID: 449964341414042571, guid: 94a6d580f249a8240a10b86a938febbb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
