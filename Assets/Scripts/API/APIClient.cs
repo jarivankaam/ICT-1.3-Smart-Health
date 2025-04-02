@@ -209,6 +209,24 @@ public class APIClient : MonoBehaviour
         return responseDto;
     }
 
+    // Change new dairy
+    public async Task SaveDairyToDatabase(string DairyContent)
+    {
+        var request = new PutChangeDairyRequestDto()
+        {
+            id = User.DairyId.ToString(),
+            userId = User.UserID.ToString(),
+            content = DairyContent
+        };
+        var jsondata = JsonUtility.ToJson(request);
+        var response = await PerformApiCall($"{_baseUrl}/api/Dairy/{User.DairyId}", "PUT", jsondata, User.AccessToken);
+
+        if (response == null)
+        {
+            Debug.Log("Failed to change dairy");
+        }
+    }
+
     // Get TimeLine data by the user ID
     public async Task<GetTimeLineDataResponseDto> GetTimeLineData()
     {
@@ -219,6 +237,7 @@ public class APIClient : MonoBehaviour
         {
             Debug.Log("Failed to get timeline data");
         }
+        
         return responseDto;
     }
 
