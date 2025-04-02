@@ -7,7 +7,7 @@ using System;
 
 public class APIClient : MonoBehaviour
 {
-    [SerializeField] private string _baseUrl = "https://localhost:7109";
+    [SerializeField] private string _baseUrl = "https://avansict20.azurewebsites.net";
     public UserData User = new UserData();
     public string GetAccessToken() => User.AccessToken;
     public string GetRefreshToken() => User.RefreshToken;
@@ -210,17 +210,16 @@ public class APIClient : MonoBehaviour
     }
 
     // Get TimeLine data by the user ID
-    public async Task<GetTimeLineDataResponseDto> GetTimeLineData()
+    public async Task GetTimeLineData()
     {
         var response = await PerformApiCall($"{_baseUrl}/api/Timeline/{User.UserID}", "GET", null, User.AccessToken);
         var responseDto = JsonUtility.FromJson<GetTimeLineDataResponseDto>(response);
 
         if (responseDto == null)
         {
-            Debug.Log("Failed to get time line data");
+            Debug.Log("Failed to get timeline data");
         }
 
-        return responseDto;
     }
 
     // Create new TimeLine
@@ -234,6 +233,26 @@ public class APIClient : MonoBehaviour
         };
         var jsondata = JsonUtility.ToJson(request);
         var response = await PerformApiCall($"{_baseUrl}/api/Timeline", "POST", jsondata, User.AccessToken);
+        var responseDto = JsonUtility.FromJson<PostNewTimeLineResponseDto>(response);
+
+        if (responseDto == null)
+        {
+            Debug.Log("Failed to create new time line");
+        }
+
+        return responseDto;
+    }
+    public async Task<PostNewTimeLineResponseDto> PutUpdateTimeLine()
+    {
+        var request = new PostChangeTimelineRequestDto()
+        {
+            Id = User.TimeLineId.ToString(),
+            name = $"{User.DisplayName}'s tijdlijn",
+            routeType = User.TimeLineRoute,
+            userId = User.UserID.ToString()
+        };
+        var jsondata = JsonUtility.ToJson(request);
+        var response = await PerformApiCall($"{_baseUrl}/api/Timeline/{User.TimeLineId}", "POST", jsondata, User.AccessToken);
         var responseDto = JsonUtility.FromJson<PostNewTimeLineResponseDto>(response);
 
         if (responseDto == null)
