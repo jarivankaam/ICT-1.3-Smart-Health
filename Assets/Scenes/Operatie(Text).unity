@@ -1825,8 +1825,8 @@ MonoBehaviour:
     dan alleen gips, maar is soms helaas wel noodzakelijk om een goed herstelproces
     te hebben.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 72e41153d900e724797eb3300bf42f38, type: 2}
+  m_sharedMaterial: {fileID: 4726236490659536756, guid: 72e41153d900e724797eb3300bf42f38, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
