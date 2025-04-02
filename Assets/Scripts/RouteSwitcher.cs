@@ -8,30 +8,40 @@ public class RouteSwitcher : MonoBehaviour
     public TMP_Text chosenRoute;
     public GameObject RouteA;
     public GameObject RouteB;
-    public bool isRouteB = false;
+    private UserData User = APIClient.Instance.User;
+
     public void Start()
     {
-        RouteA.SetActive(true);
-        RouteB.SetActive(false);
-    }
-    public void ChangeRoute()
-    {
-        if (!isRouteB)
+        if (User.TimeLineRoute)
         {
             chosenRoute.text = "Route B";
-            isRouteB = true;
             RouteB.SetActive(true);
             RouteA.SetActive(false);
-            APIClient.Instance.User.TimeLineRoute = isRouteB;
+        }
+        else
+        {
+            chosenRoute.text = "Route A";
+            RouteA.SetActive(true);
+            RouteB.SetActive(false);
+        }
+    }
+
+    public void ChangeRoute()
+    {
+        if (!User.TimeLineRoute)
+        {
+            chosenRoute.text = "Route B";
+            RouteB.SetActive(true);
+            RouteA.SetActive(false);
+            User.TimeLineRoute = true;
             APIClient.Instance.PutUpdateTimeLine();
         }
         else
         {
             chosenRoute.text = "Route A";
-            isRouteB = false;
             RouteA.SetActive(true);
             RouteB.SetActive(false);
-            APIClient.Instance.User.TimeLineRoute = isRouteB;
+            User.TimeLineRoute = false;
             APIClient.Instance.PutUpdateTimeLine();
         }
     }

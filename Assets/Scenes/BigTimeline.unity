@@ -7570,7 +7570,7 @@ MonoBehaviour:
   chosenRoute: {fileID: 1850554690}
   RouteA: {fileID: 1963776296}
   RouteB: {fileID: 1914030727}
-  isRouteA: 1
+  isRouteB: 0
 --- !u!4 &1606565140
 Transform:
   m_ObjectHideFlags: 0
@@ -9531,7 +9531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1914030728
 RectTransform:
   m_ObjectHideFlags: 0

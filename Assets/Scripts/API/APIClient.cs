@@ -7,7 +7,7 @@ using System;
 
 public class APIClient : MonoBehaviour
 {
-    [SerializeField] private string _baseUrl = "https://avansict20.azurewebsites.net";
+    [SerializeField] private string _baseUrl = "https://localhost:7109/";
     public UserData User = new UserData();
     public string GetAccessToken() => User.AccessToken;
     public string GetRefreshToken() => User.RefreshToken;
@@ -252,12 +252,12 @@ public class APIClient : MonoBehaviour
             userId = User.UserID.ToString()
         };
         var jsondata = JsonUtility.ToJson(request);
-        var response = await PerformApiCall($"{_baseUrl}/api/Timeline/{User.TimeLineId}", "POST", jsondata, User.AccessToken);
+        var response = await PerformApiCall($"{_baseUrl}/api/Timeline/{User.TimeLineId}", "PUT", jsondata, User.AccessToken);
         var responseDto = JsonUtility.FromJson<PostNewTimeLineResponseDto>(response);
 
         if (responseDto == null)
         {
-            Debug.Log("Failed to create new time line");
+            Debug.Log("Failed to Update new timeline");
         }
 
     }
