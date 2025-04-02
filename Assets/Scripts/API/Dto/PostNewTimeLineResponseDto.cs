@@ -1,10 +1,10 @@
 using System;
 
 [Serializable]
-public class GetTimeLineDataResponseDto
+public class PostNewTimeLineResponseDto
 {
     public string id;
     public string name;
     public bool routeType;
-    public string userID;
+    public string userId;
 }

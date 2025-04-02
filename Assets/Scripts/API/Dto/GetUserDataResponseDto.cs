@@ -1,7 +1,10 @@
+using System;
+
+[Serializable]
 public class GetUserDataResponseDto
 {
-    public string ID;
-    public string IdentityUserID;
-    public string DisplayName;
-    public string ProfilePhotoPath;
+    public string id;
+    public string identityUserId;
+    public string displayName;
+    public string profilePhotoPath;
 }

@@ -1,7 +1,7 @@
 using System;
 
 [Serializable]
-public class GetDairyDataResponseDto
+public class PostDairyDataResponseDto
 {
     public string id;
     public string content;

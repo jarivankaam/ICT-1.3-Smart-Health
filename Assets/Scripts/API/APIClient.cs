@@ -8,10 +8,10 @@ using System;
 public class APIClient : MonoBehaviour
 {
     [SerializeField] private string _baseUrl = "https://localhost:7109";
-    private UserData _user = new UserData();
-    public string GetAccessToken() => _user.AccessToken;
-    public string GetRefreshToken() => _user.RefreshToken;
-    public string GetEmail() => _user.Email;
+    public UserData User = new UserData();
+    public string GetAccessToken() => User.AccessToken;
+    public string GetRefreshToken() => User.RefreshToken;
+    public string GetEmail() => User.Email;
     public static APIClient Instance { get; private set; }
 
     // Prevents destroying the ApiClient instance
@@ -64,9 +64,9 @@ public class APIClient : MonoBehaviour
         // Filling all user data
         if (responseDto != null)
         {
-            _user.AccessToken = responseDto.accessToken;
-            _user.RefreshToken = responseDto.refreshToken;
-            _user.Email = email;
+            User.AccessToken = responseDto.accessToken;
+            User.RefreshToken = responseDto.refreshToken;
+            User.Email = email;
             await InitializeUserData();
         }
     }
@@ -75,30 +75,47 @@ public class APIClient : MonoBehaviour
     public async Task InitializeUserData()
     {
         // Getting Identity User ID
-        _user.IdentityUserID = await GetIdentityUserID();
+        User.IdentityUserID = await GetIdentityUserID();
 
-        Debug.Log("=== User Data ===");
-        Debug.Log($"IdentityUserID: {_user.IdentityUserID}");
-        Debug.Log($"AccessToken: {_user.AccessToken}");
-        Debug.Log($"RefreshToken: {_user.RefreshToken}");
-        Debug.Log($"Email: {_user.Email}");
-
-        // Getting User data [HIER GEBLEVEN]
+        // Getting User data
         var userData = await GetUserData();
-        _user.UserID = Guid.Parse(userData.ID);
-        _user.DisplayName = userData.DisplayName;
-        _user.ProfilePhotoPath = userData.ProfilePhotoPath;
+        User.UserID = Guid.Parse(userData.id);
+        User.DisplayName = userData.displayName;
+        User.ProfilePhotoPath = userData.profilePhotoPath;
 
         // Getting Dairy Data
         var dairyData = await GetDairyData();
-        _user.DairyId = Guid.Parse(dairyData.ID);
-        _user.DairyContent = dairyData.Content;
+
+        // If dairy data is found, fill the properties, otherwise create a new dairy
+        if (dairyData != null)
+        {
+            User.DairyId = Guid.Parse(dairyData.id);
+            User.DairyContent = dairyData.content;
+        }
+        else
+        {
+            var newDairyData = await PostNewDairy();
+            User.DairyId = Guid.Parse(newDairyData.id);
+            User.DairyContent = newDairyData.content;
+        }
 
         // Getting TimeLine Data
         var timeLineData = await GetTimeLineData();
-        _user.TimeLineId = Guid.Parse(timeLineData.ID);
-        _user.TimeLineName = timeLineData.Name;
-        _user.TimeLineRoute = timeLineData.routeType;
+
+        // If TimeLine data is found, fill the properties, otherwise create a new TimeLine
+        if (timeLineData != null)
+        {
+            User.TimeLineId = Guid.Parse(timeLineData.id);
+            User.TimeLineName = timeLineData.name;
+            User.TimeLineRoute = timeLineData.routeType;
+        }
+        else
+        {
+            var newTimeLineData = await PostNewTimeLine();
+            User.TimeLineId = Guid.Parse(newTimeLineData.id);
+            User.TimeLineName = newTimeLineData.name;
+            User.TimeLineRoute = newTimeLineData.routeType;
+        }
 
         LogUserData();
     }
@@ -107,30 +124,30 @@ public class APIClient : MonoBehaviour
     public void LogUserData()
     {
         Debug.Log("=== User Data ===");
-        Debug.Log($"UserID: {_user.UserID}");
-        Debug.Log($"IdentityUserID: {_user.IdentityUserID}");
-        Debug.Log($"AccessToken: {_user.AccessToken}");
-        Debug.Log($"RefreshToken: {_user.RefreshToken}");
-        Debug.Log($"Email: {_user.Email}");
+        Debug.Log($"UserID: {User.UserID}");
+        Debug.Log($"IdentityUserID: {User.IdentityUserID}");
+        Debug.Log($"AccessToken: {User.AccessToken}");
+        Debug.Log($"RefreshToken: {User.RefreshToken}");
+        Debug.Log($"Email: {User.Email}");
 
         Debug.Log("\n=== User Settings ===");
-        Debug.Log($"ProfilePhotoPath: {_user.ProfilePhotoPath}");
-        Debug.Log($"DisplayName: {_user.DisplayName}");
+        Debug.Log($"ProfilePhotoPath: {User.ProfilePhotoPath}");
+        Debug.Log($"DisplayName: {User.DisplayName}");
 
         Debug.Log("\n=== User Dairy ===");
-        Debug.Log($"DairyId: {_user.DairyId}");
-        Debug.Log($"DairyContent: {_user.DairyContent}");
+        Debug.Log($"DairyId: {User.DairyId}");
+        Debug.Log($"DairyContent: {User.DairyContent}");
 
         Debug.Log("\n=== User TimeLine ===");
-        Debug.Log($"TimeLineId: {_user.TimeLineId}");
-        Debug.Log($"TimeLineName: {_user.TimeLineName}");
-        Debug.Log($"TimeLineRoute: {_user.TimeLineRoute}");
+        Debug.Log($"TimeLineId: {User.TimeLineId}");
+        Debug.Log($"TimeLineName: {User.TimeLineName}");
+        Debug.Log($"TimeLineRoute: {User.TimeLineRoute}");
     }
 
     // Get Identity User ID
     public async Task<Guid> GetIdentityUserID()
     {
-        var response = await PerformApiCall($"{_baseUrl}/api/User/CurrentUser", "GET", null, _user.AccessToken);
+        var response = await PerformApiCall($"{_baseUrl}/api/User/CurrentUser", "GET", null, User.AccessToken);
 
         if (response == null)
         {
@@ -145,12 +162,9 @@ public class APIClient : MonoBehaviour
     // Get User ID
     public async Task<GetUserDataResponseDto> GetUserData()
     {
-        var request = new GetUserDataRequestDto()
-        {
-            IdentityUserID = _user.IdentityUserID
-        };
-        var jsondata = JsonUtility.ToJson(request);
-        var response = await PerformApiCall($"{_baseUrl}/api/User/{_user.IdentityUserID}", "GET", jsondata, _user.AccessToken);
+        var jsondata = $"\"{User.IdentityUserID}\"";
+
+        var response = await PerformApiCall($"{_baseUrl}/api/User/{User.IdentityUserID}", "GET", jsondata, User.AccessToken);
         var responseDto = JsonUtility.FromJson<GetUserDataResponseDto>(response);
 
         if (responseDto == null)
@@ -164,12 +178,32 @@ public class APIClient : MonoBehaviour
     // Get Dairy data by the user ID
     public async Task<GetDairyDataResponseDto> GetDairyData()
     {
-        var response = await PerformApiCall($"{_baseUrl}/api/Dairy/{_user.UserID}", "GET", null, _user.AccessToken);
+        var response = await PerformApiCall($"{_baseUrl}/api/Dairy/{User.UserID}", "GET", null, User.AccessToken);
         var responseDto = JsonUtility.FromJson<GetDairyDataResponseDto>(response);
 
         if (responseDto == null)
         {
-            Debug.Log("Failed to get dairy data");
+            Debug.Log("No dairy data found");
+        }
+
+        return responseDto;
+    }
+
+    // Create new dairy
+    public async Task<PostDairyDataResponseDto> PostNewDairy()
+    {
+        var request = new PostNewDairyDataRequestDto()
+        {
+            userId = User.UserID.ToString(),
+            content = $"{User.DisplayName}'s dagboek"
+        };
+        var jsondata = JsonUtility.ToJson(request);
+        var response = await PerformApiCall($"{_baseUrl}/api/Dairy", "POST", jsondata, User.AccessToken);
+        var responseDto = JsonUtility.FromJson<PostDairyDataResponseDto>(response);
+
+        if (responseDto == null)
+        {
+            Debug.Log("Failed to create new dairy");
         }
 
         return responseDto;
@@ -178,7 +212,7 @@ public class APIClient : MonoBehaviour
     // Get TimeLine data by the user ID
     public async Task<GetTimeLineDataResponseDto> GetTimeLineData()
     {
-        var response = await PerformApiCall($"{_baseUrl}/api/Timeline/{_user.UserID}", "GET", null, _user.AccessToken);
+        var response = await PerformApiCall($"{_baseUrl}/api/Timeline/{User.UserID}", "GET", null, User.AccessToken);
         var responseDto = JsonUtility.FromJson<GetTimeLineDataResponseDto>(response);
 
         if (responseDto == null)
@@ -189,19 +223,40 @@ public class APIClient : MonoBehaviour
         return responseDto;
     }
 
+    // Create new TimeLine
+    public async Task<PostNewTimeLineResponseDto> PostNewTimeLine()
+    {
+        var request = new PostNewTimeLineRequestDto()
+        {
+            name = $"{User.DisplayName}'s tijdlijn",
+            routeType = false,
+            userId = User.UserID.ToString()
+        };
+        var jsondata = JsonUtility.ToJson(request);
+        var response = await PerformApiCall($"{_baseUrl}/api/Timeline", "POST", jsondata, User.AccessToken);
+        var responseDto = JsonUtility.FromJson<PostNewTimeLineResponseDto>(response);
+
+        if (responseDto == null)
+        {
+            Debug.Log("Failed to create new time line");
+        }
+
+        return responseDto;
+    }
+
     // Logout the user
     public async Task Logout()
     {
         var request = new PostLogoutRequestDto()
         {
-            Email = _user.Email
+            Email = User.Email
         };
         var jsondata = JsonUtility.ToJson(request);
-        var response = await PerformApiCall($"{_baseUrl}/auth/logout", "POST", jsondata, _user.AccessToken);
+        var response = await PerformApiCall($"{_baseUrl}/auth/logout", "POST", jsondata, User.AccessToken);
 
-        _user.AccessToken = null;
-        _user.RefreshToken = null;
-        _user.Email = null;
+        User.AccessToken = null;
+        User.RefreshToken = null;
+        User.Email = null;
 
         SceneManager.LoadScene("StartScreen");
     }
