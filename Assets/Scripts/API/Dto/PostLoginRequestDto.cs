@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public class PostRegisterRequestDto
+public class PostLoginRequestDto
 {
     public string email;
     public string password;
