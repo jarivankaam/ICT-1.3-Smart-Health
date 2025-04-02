@@ -1,21 +1,33 @@
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
 public class RouteSwitcher : MonoBehaviour
 {
     public TMP_Text chosenRoute;
-    public bool RouteA = true;
+    public GameObject RouteA;
+    public GameObject RouteB;
+    public bool isRouteA = true;
+    public void Start()
+    {
+        RouteA.SetActive(true);
+        RouteB.SetActive(false);
+    }
     public void ChangeRoute()
     {
-        if (RouteA)
+        if (isRouteA)
         {
             chosenRoute.text = "Route B";
-            RouteA = false;
+            isRouteA = false;
+            RouteB.SetActive(true);
+            RouteA.SetActive(false);
         }
         else
         {
             chosenRoute.text = "Route A";
-            RouteA = true;
+            isRouteA = true;
+            RouteA.SetActive(true);
+            RouteB.SetActive(false);
         }
     }
 }
