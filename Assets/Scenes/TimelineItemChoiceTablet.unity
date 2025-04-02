@@ -2157,7 +2157,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Naar Gips Kleur Keuze
+  m_text: Waarom krijg ik gips?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9cf9b5efd6982f48b9d2607d84d6879, type: 2}
   m_sharedMaterial: {fileID: -320926741035617509, guid: a9cf9b5efd6982f48b9d2607d84d6879, type: 2}
@@ -2511,7 +2511,6 @@ MonoBehaviour:
   - {fileID: 636902860}
   - {fileID: 1686941403}
   submitButton: {fileID: 0}
-  isMenuActive: 0
 --- !u!1001 &982429244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2799,7 +2798,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2413806693520163455, guid: cb5a45eb49e693644bbaa14f8bfad18b, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: 3d79725be697486448466cc75eaa2189, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5200,8 +5199,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294937216
-  m_fontColor: {r: 0.5019608, g: 0.5411765, b: 1, a: 1}
+    rgba: 4289103491
+  m_fontColor: {r: 0.5127714, g: 0.5236511, b: 0.6509434, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
