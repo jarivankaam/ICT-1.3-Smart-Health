@@ -7,6 +7,7 @@ public class ToggleElement : MonoBehaviour
     public TextMeshProUGUI textElement;
     public Sprite spriteElement;
     public bool text;
+    public GameObject endScreemPopup;
 
     public void Toggle(bool choice)
     {
@@ -25,6 +26,10 @@ public class ToggleElement : MonoBehaviour
         {
             state = false;
         }
+    }
+    public void ToggleEndScreenPopup()
+    {
+            endScreemPopup.SetActive(false);
     }
 
 }
