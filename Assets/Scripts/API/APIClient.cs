@@ -117,32 +117,33 @@ public class APIClient : MonoBehaviour
             User.TimeLineRoute = newTimeLineData.routeType;
         }
 
-        LogUserData();
+        //LogUserData();
     }
 
     // Method to log all properties of UserData to the console
-    public void LogUserData()
-    {
-        Debug.Log("=== User Data ===");
-        Debug.Log($"UserID: {User.UserID}");
-        Debug.Log($"IdentityUserID: {User.IdentityUserID}");
-        Debug.Log($"AccessToken: {User.AccessToken}");
-        Debug.Log($"RefreshToken: {User.RefreshToken}");
-        Debug.Log($"Email: {User.Email}");
+    
+    //public void LogUserData()
+    //{
+    //    Debug.Log("=== User Data ===");
+    //    Debug.Log($"UserID: {User.UserID}");
+    //    Debug.Log($"IdentityUserID: {User.IdentityUserID}");
+    //    Debug.Log($"AccessToken: {User.AccessToken}");
+    //    Debug.Log($"RefreshToken: {User.RefreshToken}");
+    //    Debug.Log($"Email: {User.Email}");
 
-        Debug.Log("\n=== User Settings ===");
-        Debug.Log($"ProfilePhotoPath: {User.ProfilePhotoPath}");
-        Debug.Log($"DisplayName: {User.DisplayName}");
+    //    Debug.Log("\n=== User Settings ===");
+    //    Debug.Log($"ProfilePhotoPath: {User.ProfilePhotoPath}");
+    //    Debug.Log($"DisplayName: {User.DisplayName}");
 
-        Debug.Log("\n=== User Dairy ===");
-        Debug.Log($"DairyId: {User.DairyId}");
-        Debug.Log($"DairyContent: {User.DairyContent}");
+    //    Debug.Log("\n=== User Dairy ===");
+    //    Debug.Log($"DairyId: {User.DairyId}");
+    //    Debug.Log($"DairyContent: {User.DairyContent}");
 
-        Debug.Log("\n=== User TimeLine ===");
-        Debug.Log($"TimeLineId: {User.TimeLineId}");
-        Debug.Log($"TimeLineName: {User.TimeLineName}");
-        Debug.Log($"TimeLineRoute: {User.TimeLineRoute}");
-    }
+    //    Debug.Log("\n=== User TimeLine ===");
+    //    Debug.Log($"TimeLineId: {User.TimeLineId}");
+    //    Debug.Log($"TimeLineName: {User.TimeLineName}");
+    //    Debug.Log($"TimeLineRoute: {User.TimeLineRoute}");
+    //} 
 
     // Get Identity User ID
     public async Task<Guid> GetIdentityUserID()
@@ -340,8 +341,6 @@ public class APIClient : MonoBehaviour
             await request.SendWebRequest();
             if (request.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("API-aanroep is successvol: " + request.downloadHandler.text);
-
                 return request.downloadHandler.text;
             }
             else
