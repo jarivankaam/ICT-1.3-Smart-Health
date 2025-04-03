@@ -12,17 +12,13 @@ public class TabFunctionTimelineScene : MonoBehaviour
     public List<Selectable> tabOrderB;
     public List<Selectable> tabOrderMenu;
     public Button submitButton;
-
     public enum PageState { 
         RouteA, 
         RouteB, 
         Menu 
     }
-
     private PageState currentState;
     private PageState previousState = PageState.RouteA; 
-
-    private bool hasTabbed = false;
 
     public void Start()
     {
@@ -41,7 +37,6 @@ public class TabFunctionTimelineScene : MonoBehaviour
             if (system.currentSelectedGameObject == null && activeTabOrder.Count > 0)
             {
                 activeTabOrder[0].Select();
-                hasTabbed = true;
                 return;
             }
 
@@ -98,7 +93,6 @@ public class TabFunctionTimelineScene : MonoBehaviour
             currentState = PageState.RouteA;
         }
 
-        hasTabbed = false;
         Debug.Log("Switched to: " + currentState);
 
         //Clear current selection to force refresh
@@ -123,7 +117,6 @@ public class TabFunctionTimelineScene : MonoBehaviour
             currentState = PageState.Menu;
         }
 
-        hasTabbed = false;
         Debug.Log("Menu Active: " + (currentState == PageState.Menu));
 
         system.SetSelectedGameObject(null); //Clear focus first

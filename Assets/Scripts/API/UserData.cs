@@ -10,7 +10,7 @@ public class UserData
     public string Email { get; set; }
 
     // User Settings
-    public string? ProfilePhotoPath { get; set; }
+    public string ProfilePhotoPath { get; set; }
     public string DisplayName { get; set; }
 
     // User Dairy

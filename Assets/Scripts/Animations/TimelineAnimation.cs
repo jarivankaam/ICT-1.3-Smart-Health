@@ -1,6 +1,5 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TimelineAnimation : MonoBehaviour
 {
@@ -22,139 +21,37 @@ public class TimelineAnimation : MonoBehaviour
 
     public void Start()
     {
-        var isRouteB = APIClient.Instance.User.TimeLineRoute;
-        var currentStep = APIClient.Instance.User.CurrentStep;
+        bool isRouteB = APIClient.Instance.User.TimeLineRoute;
+        int currentStep = Mathf.Clamp(APIClient.Instance.User.CurrentStep ?? 0, 0, int.MaxValue);
 
-        Debug.Log(currentStep);
-
-        if (currentStep is 0 or null)
-        {
-            currentStep = 0;
-        }
+        Vector3 targetPosition;
 
         if (isRouteB)
         {
-            switch (currentStep)
-            {
-                case 1:
-                    ChangeApePositionToControleB();
-                    break;
-                case 2:
-                    ChangeApePositionToBijDeArtsB();
-                    break;
-                case 3:
-                    ChangeApePositionToOperatie();
-                    break;
-                case 4:
-                    ChangeApePositionToGipsB();
-                    break;
-                case 5:
-                    ChangeApePositionToMedicatieB();
-                    break;
-                case 6:
-                    ChangeApePositionToNazorgB();
-                    break;
-                case 7:
-                    ChangeApePositionToControleBijDeArtsB();
-                    break;
-                default:
-                    ChangeApePositionToControleB();
-                    break;
-            }
+            targetPosition = GetStepPosition(currentStep, ControleB, BijDeArtsB, Operatie, GipsB, MedicatieB, NazorgB, ControleBijDeArtsB);
+            MoveApe(animatorApeB, targetPosition);
         }
         else
         {
-            switch (currentStep)
-            {
-                case 1:
-                    ChangeApePositionToControleA();
-                    break;
-                case 2:
-                    ChangeApePositionToBijDeArtsA();
-                    break;
-                case 3:
-                    ChangeApePositionToGipsA();
-                    break;
-                case 4:
-                    ChangeApePositionToMedicatieA();
-                    break;
-                case 5:
-                    ChangeApePositionToNazorgA();
-                    break;
-                case 6:
-                    ChangeApePositionToControleBijDeArtsA();
-                    break;
-                default:
-                    ChangeApePositionToControleA();
-                    break;
-            }
+            targetPosition = GetStepPosition(currentStep, ControleA, BijDeArtsA, GipsA, MedicatieA, NazorgA, ControleBijDeArtsA);
+            MoveApe(animatorApeA, targetPosition);
         }
     }
 
-    public void ChangeApePositionToControleA()
+    private Vector3 GetStepPosition(int step, params Vector3[] steps)
     {
-        animatorApeA.DOMove(ControleA, 2)
-           .SetEase(Ease.InOutSine);
+        return steps[Mathf.Clamp(step - 1, 0, steps.Length - 1)];
     }
-    public void ChangeApePositionToBijDeArtsA()
+
+    public void MoveApe(Transform ape, Vector3 targetPosition)
     {
-        animatorApeA.DOMove(BijDeArtsA, 2)
-           .SetEase(Ease.InOutSine);
-    }
-    public void ChangeApePositionToGipsA()
-    {
-        animatorApeA.DOMove(GipsA, 2)
-           .SetEase(Ease.InOutSine);
-    }
-    public void ChangeApePositionToMedicatieA()
-    {
-        animatorApeA.DOMove(MedicatieA, 2)
-           .SetEase(Ease.InOutSine);
-    }
-    public void ChangeApePositionToNazorgA()
-    {
-        animatorApeA.DOMove(NazorgA, 2)
-           .SetEase(Ease.InOutSine);
-    }
-    public void ChangeApePositionToControleBijDeArtsA()
-    {
-        animatorApeA.DOMove(ControleBijDeArtsA, 2)
-           .SetEase(Ease.InOutSine);
-    }
-    public void ChangeApePositionToControleB()
-    {
-        animatorApeB.DOMove(ControleB, 2)
-           .SetEase(Ease.InOutSine);
-    }
-    public void ChangeApePositionToBijDeArtsB()
-    {
-        animatorApeB.DOMove(BijDeArtsB, 2)
-           .SetEase(Ease.InOutSine);
-    }
-    public void ChangeApePositionToOperatie()
-    {
-        animatorApeB.DOMove(Operatie, 2)
-           .SetEase(Ease.InOutSine);
-    }
-    public void ChangeApePositionToGipsB()
-    {
-        animatorApeB.DOMove(GipsB, 2)
-           .SetEase(Ease.InOutSine);
-    }
-    public void ChangeApePositionToMedicatieB()
-    {
-        animatorApeB.DOMove(MedicatieB, 2)
-           .SetEase(Ease.InOutSine);
-    }
-    public void ChangeApePositionToNazorgB()
-    {
-        animatorApeB.DOMove(NazorgB, 2)
-           .SetEase(Ease.InOutSine);
-    }
-    public void ChangeApePositionToControleBijDeArtsB()
-    {
-        animatorApeB.DOMove(ControleBijDeArtsB, 2)
-           .SetEase(Ease.InOutSine);
+        if (ape == null)
+        {
+            Debug.LogError("AnimatorApe niet gevonden!");
+            return;
+        }
+
+        ape.DOMove(targetPosition, 2).SetEase(Ease.InOutSine);
     }
 }
 

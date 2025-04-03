@@ -1,5 +1,3 @@
-using JetBrains.Annotations;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -26,7 +24,7 @@ public class RouteSwitcher : MonoBehaviour
         }
     }
 
-    public void ChangeRoute()
+    public async void ChangeRoute()
     {
         if (!User.TimeLineRoute)
         {
@@ -34,7 +32,7 @@ public class RouteSwitcher : MonoBehaviour
             RouteB.SetActive(true);
             RouteA.SetActive(false);
             User.TimeLineRoute = true;
-            APIClient.Instance.PutUpdateTimeLine();
+            await APIClient.Instance.PutUpdateTimeLine();
         }
         else
         {
@@ -42,7 +40,7 @@ public class RouteSwitcher : MonoBehaviour
             RouteA.SetActive(true);
             RouteB.SetActive(false);
             User.TimeLineRoute = false;
-            APIClient.Instance.PutUpdateTimeLine();
+            await APIClient.Instance.PutUpdateTimeLine();
         }
     }
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System.Collections.Generic;
@@ -7,11 +7,11 @@ using System;
 public class ProfilePictureSwitcher : MonoBehaviour
 {
     public RawImage profileRawImage;
-    public string currentProfilePicturePath;
-    public int chosenImageNumber;
+    private string currentProfilePicturePath;
+    private int chosenImageNumber;
     private string imagesFolder;
     private UserData user = APIClient.Instance.User;
-    List<string> fileNames = new List<string>()
+    private List<string> fileNames = new List<string>()
         {
         "Black brown girl.png",
         "Black brown man.png",
@@ -47,136 +47,100 @@ public class ProfilePictureSwitcher : MonoBehaviour
         }
 
         imagesFolder = Application.persistentDataPath + "/ProfilePictures/";
-        CheckAndSaveCurrentProfilePicture();
-    }
-
-    public void CheckAndSaveCurrentProfilePicture()
-    {
-        currentProfilePicturePath = user.ProfilePhotoPath;
-
-        if (string.IsNullOrEmpty(user.ProfilePhotoPath))
-        {
-            currentProfilePicturePath = fileNames[8];
-            Debug.Log($"{fileNames[8]}");
-            Debug.Log($"{currentProfilePicturePath}");
-        }
+        currentProfilePicturePath = string.IsNullOrEmpty(user.ProfilePhotoPath) ? fileNames[8] : user.ProfilePhotoPath;
         LoadCurrentProfileImage();
     }
 
-    public void BlackBrownGirlProfilePicture()
-    {
-        chosenImageNumber = 0;
-        currentProfilePicturePath = fileNames[0];
-        APIClient.Instance.PutChangeUserData(currentProfilePicturePath);
-        user.ProfilePhotoPath = currentProfilePicturePath;
-        LoadImage();
-    }
+    public void BlackBrownGirlProfilePicture() => SetProfilePicture(0);
+    public void BlackBrownManProfilePicture() => SetProfilePicture(1);
+    public void BlackBrownWomanProfilePicture() => SetProfilePicture(2);
+    public void BlondeWhiteKidProfilePicture() => SetProfilePicture(3);
+    public void BlondeWhiteWomanProfilePicture() => SetProfilePicture(4);
+    public void BrownChildProfilePicture() => SetProfilePicture(5);
+    public void BrownWhiteBoyProfilePicture() => SetProfilePicture(6);
+    public void BrownWhiteManProfilePicture() => SetProfilePicture(7);
+    public void ChildProfilePicture() => SetProfilePicture(8);
+    public void GingerWhiteManProfilePicture() => SetProfilePicture(9);
 
-    public void BlackBrownManProfilePicture()
+    private async void SetProfilePicture(int index)
     {
-        chosenImageNumber = 1;
-        currentProfilePicturePath = fileNames[1];
-        APIClient.Instance.PutChangeUserData(currentProfilePicturePath);
-        user.ProfilePhotoPath = currentProfilePicturePath;
-        LoadImage();
-    }
-
-    public void BlackBrownWomanProfilePicture()
-    {
-        chosenImageNumber = 2;
-        currentProfilePicturePath = fileNames[2];
-        APIClient.Instance.PutChangeUserData(currentProfilePicturePath);
-        user.ProfilePhotoPath = currentProfilePicturePath;
-        LoadImage();
-    }
-
-    public void BlondeWhiteKidProfilePicture()
-    {
-        chosenImageNumber = 3;
-        currentProfilePicturePath = fileNames[3];
-        APIClient.Instance.PutChangeUserData(currentProfilePicturePath);
-        user.ProfilePhotoPath = currentProfilePicturePath;
-        LoadImage();
-    }
-
-    public void BlondeWhiteWomanProfilePicture()
-    {
-        chosenImageNumber = 4;
-        currentProfilePicturePath = fileNames[4];
-        APIClient.Instance.PutChangeUserData(currentProfilePicturePath);
-        user.ProfilePhotoPath = currentProfilePicturePath;
-        LoadImage();
-    }
-
-    public void BrownChildProfilePicture()
-    {
-        chosenImageNumber = 5;
-        currentProfilePicturePath = fileNames[5];
-        APIClient.Instance.PutChangeUserData(currentProfilePicturePath);
-        user.ProfilePhotoPath = currentProfilePicturePath;
-        LoadImage();
-    }
-
-    public void BrownWhiteBoyProfilePicture()
-    {
-        chosenImageNumber = 6;
-        currentProfilePicturePath = fileNames[6];
-        APIClient.Instance.PutChangeUserData(currentProfilePicturePath);
-        user.ProfilePhotoPath = currentProfilePicturePath;
-        LoadImage();
-    }
-
-    public void BrownWhiteManProfilePicture()
-    {
-        chosenImageNumber = 7;
-        currentProfilePicturePath = fileNames[7];
-        APIClient.Instance.PutChangeUserData(currentProfilePicturePath);
-        user.ProfilePhotoPath = currentProfilePicturePath;
-        LoadImage();
-    }
-
-    public void ChildProfilePicture()
-    {
-        chosenImageNumber = 8;
-        currentProfilePicturePath = fileNames[8];
-        APIClient.Instance.PutChangeUserData(currentProfilePicturePath);
-        user.ProfilePhotoPath = currentProfilePicturePath;
-        LoadImage();
-    }
-
-    public void GingerWhiteManProfilePicture()
-    {
-        chosenImageNumber = 9;
-        currentProfilePicturePath = fileNames[9];
-        APIClient.Instance.PutChangeUserData(currentProfilePicturePath);
-        user.ProfilePhotoPath = currentProfilePicturePath;
-        LoadImage();
-    }   
-   
-    public void LoadImage()
-    {
-        if (!Directory.Exists(imagesFolder))
+        if (index < 0 || index >= fileNames.Count)
         {
-            Debug.LogError("Profile pictures folder not found!");
+            Debug.LogError("Ongeldige index voor profielfoto!");
             return;
         }
 
-        string[] files = Directory.GetFiles(imagesFolder, "*.png"); //gets all files and puts them in a string
-        Array.Sort(files, StringComparer.OrdinalIgnoreCase); // orders the files in alfabetical order
-
-        string ChosenFilePath = files[chosenImageNumber];    // choose which picture you want to show
-        byte[] imageBytes = File.ReadAllBytes(ChosenFilePath); //reads the files and changes into bytes
-        Texture2D texture = new Texture2D(2, 2);   //initialize the texture
-        texture.LoadImage(imageBytes);   // puts the bytes into the texture
-        profileRawImage.texture = texture;  // puts the texture into the image
+        chosenImageNumber = index;
+        currentProfilePicturePath = fileNames[index];
+        await APIClient.Instance.PutChangeUserData(currentProfilePicturePath);
+        user.ProfilePhotoPath = currentProfilePicturePath;
+        LoadImage();
     }
 
-    public void LoadCurrentProfileImage()
+    private void LoadImage()
     {
-        byte[] imageBytes = File.ReadAllBytes(imagesFolder + currentProfilePicturePath);
-        Texture2D texture = new Texture2D(2, 2);
-        texture.LoadImage(imageBytes);
-        profileRawImage.texture = texture;
+        if (!Directory.Exists(imagesFolder))
+        {
+            Debug.LogError("Profile pictures folder not found: " + imagesFolder);
+            return;
+        }
+
+        string[] files = Directory.GetFiles(imagesFolder, "*.png");
+
+        if (files.Length == 0)
+        {
+            Debug.LogError("No images found in: " + imagesFolder);
+            return;
+        }
+
+        Array.Sort(files, StringComparer.OrdinalIgnoreCase);
+
+        if (chosenImageNumber < 0 || chosenImageNumber >= files.Length)
+        {
+            Debug.LogWarning("ChosenImageNumber out of range, defaulting to first image.");
+            chosenImageNumber = 0;
+        }
+
+        string chosenFilePath = files[chosenImageNumber];
+
+        try
+        {
+            byte[] imageBytes = File.ReadAllBytes(chosenFilePath);
+            Texture2D texture = new Texture2D(2, 2);
+            texture.LoadImage(imageBytes);
+            profileRawImage.texture = texture;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Error loading image: " + ex.Message);
+        }
     }
 
+    private void LoadCurrentProfileImage()
+    {
+        if (string.IsNullOrEmpty(currentProfilePicturePath))
+        {
+            currentProfilePicturePath = fileNames[8];
+        }
+
+        string imagePath = Path.Combine(imagesFolder, currentProfilePicturePath);
+
+        if (!File.Exists(imagePath))
+        {
+            Debug.LogError("Profielafbeelding niet gevonden: " + imagePath);
+            return;
+        }
+
+        try
+        {
+            byte[] imageBytes = File.ReadAllBytes(imagePath);
+            Texture2D texture = new Texture2D(2, 2);
+            texture.LoadImage(imageBytes);
+            profileRawImage.texture = texture;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Fout bij laden afbeelding: " + ex.Message);
+        }
+    }
 }
