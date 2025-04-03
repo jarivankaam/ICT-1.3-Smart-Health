@@ -1,9 +1,9 @@
+using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class ExplanationAnimation : MonoBehaviour, IPointerClickHandler
+public class ExplanationAnimation : MonoBehaviour
 {
     public GameObject FrontSide;
     public GameObject BackSide;
@@ -11,8 +11,22 @@ public class ExplanationAnimation : MonoBehaviour, IPointerClickHandler
     [SerializeField] private float AnimationDuration = 0.9f;
     private bool _flipToBack = true;
 
-    public void OnPointerClick(PointerEventData eventData)
+    // Toggle Cooldown
+    private bool _isCooldownActive = false;
+    private float _cooldownTime = 0.1f; // 100ms cooldown
+
+    public void ToggleCircle()
     {
+        // Cooldown check
+        if (_isCooldownActive)
+        {
+            return;
+        }
+
+        _isCooldownActive = true; 
+        StartCoroutine(ResetCooldown()); 
+
+        // Coin Flip Handler
         if (_flipToBack)
         {
             ToolTipText.text = "Klik voor minder uitleg! De munt draait terug.";
@@ -26,6 +40,12 @@ public class ExplanationAnimation : MonoBehaviour, IPointerClickHandler
 
         GetComponentInChildren<TMP_Text>().text = _flipToBack ? "<" : "?";
         _flipToBack = !_flipToBack;
+    }
+
+    private IEnumerator ResetCooldown()
+    {
+        yield return new WaitForSeconds(_cooldownTime);
+        _isCooldownActive = false;
     }
 
     public void FlipCircleToFront()

@@ -13,21 +13,26 @@ public class TabFunctionTimelineScene : MonoBehaviour
     public List<Selectable> tabOrderMenu;
     public Button submitButton;
 
-    public enum PageState { RouteA, RouteB, Menu }
-    private PageState currentState = PageState.RouteA;
-    private PageState previousState = PageState.RouteA; //Keeps track of last active route before menu opens
+    public enum PageState { 
+        RouteA, 
+        RouteB, 
+        Menu 
+    }
+
+    private PageState currentState;
+    private PageState previousState = PageState.RouteA; 
 
     private bool hasTabbed = false;
 
     public void Start()
     {
         system = EventSystem.current;
+        currentState = APIClient.Instance.User.TimeLineRoute ? PageState.RouteB : PageState.RouteA;
     }
 
     public void Update()
     {
         List<Selectable> activeTabOrder = GetActiveTabOrder();
-
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -68,8 +73,6 @@ public class TabFunctionTimelineScene : MonoBehaviour
     //Determine which tab order is active
     private List<Selectable> GetActiveTabOrder()
     {
-        Debug.Log("Active State: " + currentState); //Debugging
-
         switch (currentState)
         {
             case PageState.RouteA:
