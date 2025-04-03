@@ -2856,7 +2856,6 @@ MonoBehaviour:
   - {fileID: 726523478}
   - {fileID: 281667913}
   submitButton: {fileID: 0}
-  isMenuActive: 0
 --- !u!1 &1790517591
 GameObject:
   m_ObjectHideFlags: 0
@@ -3094,8 +3093,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: X - sluiten
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a9cf9b5efd6982f48b9d2607d84d6879, type: 2}
+  m_sharedMaterial: {fileID: -320926741035617509, guid: a9cf9b5efd6982f48b9d2607d84d6879, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3119,8 +3118,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3208,7 +3207,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -732, y: 368}
+  m_AnchoredPosition: {x: -734, y: 366}
   m_SizeDelta: {x: 127.5, y: 54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2020781498
