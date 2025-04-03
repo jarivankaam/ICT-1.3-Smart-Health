@@ -121,7 +121,7 @@ public class APIClient : MonoBehaviour
     }
 
     // Method to log all properties of UserData to the console
-    
+
     //public void LogUserData()
     //{
     //    Debug.Log("=== User Data ===");
@@ -258,7 +258,7 @@ public class APIClient : MonoBehaviour
         {
             Debug.Log("Failed to get timeline data");
         }
-        
+
         return responseDto;
     }
 
@@ -317,6 +317,24 @@ public class APIClient : MonoBehaviour
         User.Email = null;
 
         SceneManager.LoadScene("StartScreen");
+    }
+    public async Task SendAgendaInfo(string content)
+    {
+        var userid = GetIdentityUserID();
+        var timelineid = GetTimeLineData();
+        var request = new PostNewAgendaReposoneDto()
+        {
+            Content = content,
+            ToolTipContent = "Agenda",
+            Position = "Geen Positie",
+            Type = "Agenda",
+            userID = userid.ToString(),
+            TimeLineId = timelineid.Id.ToString()
+        };
+        var jsondata = JsonUtility.ToJson(request);
+        var response = await PerformApiCall($"{_baseUrl}/api/TimeLineItems", "POST", jsondata, User.AccessToken);
+
+
     }
 
     // API call
