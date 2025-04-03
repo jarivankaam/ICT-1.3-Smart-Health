@@ -11,25 +11,16 @@ public class ToggleElement : MonoBehaviour
 
     public void Toggle(bool choice)
     {
-        Object element = null;
-
         if (choice == true)
         {
             textElement.gameObject.SetActive(state);
-        }        
+        }
 
-        if (state == false)
-        {
-            state = true;
-        }
-        else
-        {
-            state = false;
-        }
+        state = !state;
     }
     public void ToggleEndScreenPopup()
     {
-            endScreemPopup.SetActive(false);
+        endScreemPopup.SetActive(false);
     }
 
 }

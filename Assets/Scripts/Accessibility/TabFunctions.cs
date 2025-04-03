@@ -11,7 +11,6 @@ public class ChangeInput : MonoBehaviour
     public List<Selectable> tabOrderMenu;
     public Button submitButton;
     private bool isMenuActive = false;
-    private bool hasTabbed = false;
 
     public void Start()
     {
@@ -30,7 +29,6 @@ public class ChangeInput : MonoBehaviour
             if (system.currentSelectedGameObject == null && activeTabOrder.Count > 0)
             {
                 activeTabOrder[0].Select();
-                hasTabbed = true;
                 return;
             }
 
@@ -63,7 +61,6 @@ public class ChangeInput : MonoBehaviour
     public void ToggleMenu()
     {
         isMenuActive = !isMenuActive; // Toggle the state first
-        hasTabbed = false;
 
         Debug.Log("Menu Active: " + isMenuActive); // Debugging: check toggle state
 
