@@ -11,13 +11,6 @@ public class Diary : MonoBehaviour
         diaryInput.text = user.DairyContent;
     }
 
-    public async void DeleteDiary()
-    {
-        user.DairyContent = "";
-        diaryInput.text = user.DairyContent;
-        await APIClient.Instance.PutChangeDairy(user.DairyContent);
-    }
-
     public async void SaveDiary()
     {
         user.DairyContent = diaryInput.text;
