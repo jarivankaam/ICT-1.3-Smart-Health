@@ -901,7 +901,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1288245028}
         m_TargetAssemblyTypeName: Navigation, Assembly-CSharp
-        m_MethodName: OperationText
+        m_MethodName: CastLastPageText
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

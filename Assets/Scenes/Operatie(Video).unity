@@ -2223,7 +2223,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 56774043}
         m_TargetAssemblyTypeName: Navigation, Assembly-CSharp
-        m_MethodName: Cast
+        m_MethodName: AtTheDoctorVideo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2745,7 +2745,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 56774043}
         m_TargetAssemblyTypeName: Navigation, Assembly-CSharp
-        m_MethodName: Medication
+        m_MethodName: CastVideo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
