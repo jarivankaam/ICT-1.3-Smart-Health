@@ -21,4 +21,5 @@ public class UserData
     public Guid TimeLineId { get; set; }
     public string TimeLineName { get; set; }
     public bool TimeLineRoute { get; set; }
+    public int? CurrentStep { get; set; }
 } 
