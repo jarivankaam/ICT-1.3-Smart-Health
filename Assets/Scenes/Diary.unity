@@ -1561,7 +1561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3460655072521370212, guid: 8371bb868b9466b47a635c2089c96c2c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.7000122
+      value: -3.6999512
       objectReference: {fileID: 0}
     - target: {fileID: 3460655072521370212, guid: 8371bb868b9466b47a635c2089c96c2c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2559,7 +2559,6 @@ MonoBehaviour:
   tabOrder:
   - {fileID: 2020781498}
   - {fileID: 1790517593}
-  - {fileID: 0}
   - {fileID: 338435698}
   - {fileID: 1177777793}
   tabOrderMenu:
