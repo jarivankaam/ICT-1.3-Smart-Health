@@ -16,12 +16,12 @@ public class Diary : MonoBehaviour
     {
         user.DairyContent = "";
         diaryInput.text = user.DairyContent;
-        APIClient.Instance.SaveDairyToDatabase(user.DairyContent);
+        APIClient.Instance.PutChangeDairy(user.DairyContent);
     }
 
     public void SaveDiary()
     {
         user.DairyContent = diaryInput.text;
-        APIClient.Instance.SaveDairyToDatabase(user.DairyContent);
+        APIClient.Instance.PutChangeDairy(user.DairyContent);
     }
 }

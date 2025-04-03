@@ -175,6 +175,26 @@ public class APIClient : MonoBehaviour
         return responseDto;
     }
 
+    // Put user data
+    public async Task PutChangeUserData(string currentProfilePicturePath)
+    {
+        var request = new PutChangeUserDataRequestDto()
+        {
+            id = User.UserID.ToString(),
+            identityUserId = User.IdentityUserID.ToString(),
+            displayName = User.DisplayName,
+            profilePhotoPath = currentProfilePicturePath
+        };
+        var jsondata = JsonUtility.ToJson(request);
+        var response = await PerformApiCall($"{_baseUrl}/api/User/{User.UserID}", "PUT", jsondata, User.AccessToken);
+
+        if (response == null)
+        {
+            Debug.Log("Failed to Update User Data");
+        }
+
+    }
+
     // Get Dairy data by the user ID
     public async Task<GetDairyDataResponseDto> GetDairyData()
     {
@@ -210,7 +230,7 @@ public class APIClient : MonoBehaviour
     }
 
     // Change new dairy
-    public async Task SaveDairyToDatabase(string DairyContent)
+    public async Task PutChangeDairy(string DairyContent)
     {
         var request = new PutChangeDairyRequestDto()
         {
