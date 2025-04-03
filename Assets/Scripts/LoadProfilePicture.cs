@@ -38,7 +38,6 @@ public class LoadProfilePicture : MonoBehaviour
             if (File.Exists(sourcePath) && !File.Exists(destinationPath))
             {
                 File.Copy(sourcePath, destinationPath);
-                Debug.Log("Copied: " + fileName);
             }
         }
 
@@ -54,10 +53,10 @@ public class LoadProfilePicture : MonoBehaviour
     {
         currentProfilePicturePath = APIClient.Instance.User.ProfilePhotoPath;
         LoadCurrentProfileImage();
+
     }
     public void LoadCurrentProfileImage()
     {
-        Debug.Log($"{currentProfilePicturePath}");
         byte[] imageBytes = File.ReadAllBytes(imagesFolder + currentProfilePicturePath);
         Texture2D texture = new Texture2D(2, 2);
         texture.LoadImage(imageBytes);
