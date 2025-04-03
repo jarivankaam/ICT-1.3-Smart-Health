@@ -3132,7 +3132,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2063798568}
         m_TargetAssemblyTypeName: Navigation, Assembly-CSharp
-        m_MethodName: OperationVideo
+        m_MethodName: CastLastPageVideo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

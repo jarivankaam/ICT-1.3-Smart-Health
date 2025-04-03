@@ -54,7 +54,7 @@ public class Navigation : MonoBehaviour
     }
     public void Medication()
     {
-        SceneManager.LoadScene("TimelineitemMedicine");
+        SceneManager.LoadScene("TimelineItemMedicine");
     }
     public void AfterCareVideo()
     {
@@ -83,6 +83,58 @@ public class Navigation : MonoBehaviour
     public void CheckinAtTheDoctorText()
     {
         SceneManager.LoadScene("ControleBijDeArts(Text)");
+    }
+    public void EndPage()
+    {
+        SceneManager.LoadScene("EndScreen");
+    }
+    public void AtTheDocterToNextPageVideo()
+    {
+        var user = APIClient.Instance.User;
+        if (user.TimeLineRoute)
+        {
+            SceneManager.LoadScene("Operatie(Video)");
+        }
+        else
+        {
+            SceneManager.LoadScene("Gips(Video)");
+        }
+    }
+    public void AtTheDocterToNextPageText()
+    {
+        var user = APIClient.Instance.User;
+        if (user.TimeLineRoute)
+        {
+            SceneManager.LoadScene("Operatie(Text)");
+        }
+        else
+        {
+            SceneManager.LoadScene("Gips(Text)");
+        }
+    }
+    public void CastLastPageText()
+    {
+        var user = APIClient.Instance.User;
+        if (user.TimeLineRoute)
+        {
+            SceneManager.LoadScene("Operatie(Text)");
+        }
+        else
+        {
+            SceneManager.LoadScene("BijDeArts(Text)");
+        }
+    }
+    public void CastLastPageVideo()
+    {
+        var user = APIClient.Instance.User;
+        if (user.TimeLineRoute)
+        {
+            SceneManager.LoadScene("Operatie(Video)");
+        }
+        else
+        {
+            SceneManager.LoadScene("BijDeArts(Video)");
+        }
     }
 
 }
