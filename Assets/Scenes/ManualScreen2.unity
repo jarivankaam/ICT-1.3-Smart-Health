@@ -471,7 +471,6 @@ MonoBehaviour:
   - {fileID: 1371943034}
   - {fileID: 1475646538}
   submitButton: {fileID: 0}
-  isMenuActive: 0
 --- !u!1 &501763225 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3209018559828149920, guid: d023972b7c60b9d4bbb78bfc8e0850ee, type: 3}
@@ -2056,8 +2055,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 128.90015, y: -222.79999}
-  m_SizeDelta: {x: 890, y: 50}
+  m_AnchoredPosition: {x: 0, y: -260}
+  m_SizeDelta: {x: 1500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1548673287
 MonoBehaviour:
@@ -2114,10 +2113,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26
-  m_fontSizeBase: 26
+  m_fontSize: 40.65
+  m_fontSizeBase: 40
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -2152,7 +2151,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -321.22437, y: 0, z: -74.34738, w: 0}
+  m_margin: {x: -2.1673584, y: 0, z: 1.27005, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

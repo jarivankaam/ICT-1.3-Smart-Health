@@ -469,7 +469,6 @@ MonoBehaviour:
   - {fileID: 1371943034}
   - {fileID: 1475646538}
   submitButton: {fileID: 0}
-  isMenuActive: 0
 --- !u!1 &501763225 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3209018559828149920, guid: d023972b7c60b9d4bbb78bfc8e0850ee, type: 3}
@@ -2046,7 +2045,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548673285}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2054,8 +2053,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 128.90015, y: -222.79999}
-  m_SizeDelta: {x: 890, y: 50}
+  m_AnchoredPosition: {x: 0, y: -250}
+  m_SizeDelta: {x: 1500, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1548673287
 MonoBehaviour:
@@ -2086,10 +2085,7 @@ MonoBehaviour:
     er met hem of haar gaat gebeuren.
 
     Als ouder kan je op verschillende plekken
-    in de app uitgebreidere informatie bekijken door op het
-
-    vraag tekentje te
-    klikken'
+    in de app uitgebreidere informatie bekijken door op het vraag tekentje te klikken'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9cf9b5efd6982f48b9d2607d84d6879, type: 2}
   m_sharedMaterial: {fileID: -320926741035617509, guid: a9cf9b5efd6982f48b9d2607d84d6879, type: 2}
@@ -2116,10 +2112,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 40.65
+  m_fontSizeBase: 40
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -2154,7 +2150,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -321.22437, y: 0, z: -74.34738, w: 0}
+  m_margin: {x: -2.9575195, y: 0, z: -0.7182312, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
