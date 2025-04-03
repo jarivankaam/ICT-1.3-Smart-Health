@@ -117,32 +117,33 @@ public class APIClient : MonoBehaviour
             User.TimeLineRoute = newTimeLineData.routeType;
         }
 
-        LogUserData();
+        //LogUserData();
     }
 
     // Method to log all properties of UserData to the console
-    public void LogUserData()
-    {
-        Debug.Log("=== User Data ===");
-        Debug.Log($"UserID: {User.UserID}");
-        Debug.Log($"IdentityUserID: {User.IdentityUserID}");
-        Debug.Log($"AccessToken: {User.AccessToken}");
-        Debug.Log($"RefreshToken: {User.RefreshToken}");
-        Debug.Log($"Email: {User.Email}");
+    
+    //public void LogUserData()
+    //{
+    //    Debug.Log("=== User Data ===");
+    //    Debug.Log($"UserID: {User.UserID}");
+    //    Debug.Log($"IdentityUserID: {User.IdentityUserID}");
+    //    Debug.Log($"AccessToken: {User.AccessToken}");
+    //    Debug.Log($"RefreshToken: {User.RefreshToken}");
+    //    Debug.Log($"Email: {User.Email}");
 
-        Debug.Log("\n=== User Settings ===");
-        Debug.Log($"ProfilePhotoPath: {User.ProfilePhotoPath}");
-        Debug.Log($"DisplayName: {User.DisplayName}");
+    //    Debug.Log("\n=== User Settings ===");
+    //    Debug.Log($"ProfilePhotoPath: {User.ProfilePhotoPath}");
+    //    Debug.Log($"DisplayName: {User.DisplayName}");
 
-        Debug.Log("\n=== User Dairy ===");
-        Debug.Log($"DairyId: {User.DairyId}");
-        Debug.Log($"DairyContent: {User.DairyContent}");
+    //    Debug.Log("\n=== User Dairy ===");
+    //    Debug.Log($"DairyId: {User.DairyId}");
+    //    Debug.Log($"DairyContent: {User.DairyContent}");
 
-        Debug.Log("\n=== User TimeLine ===");
-        Debug.Log($"TimeLineId: {User.TimeLineId}");
-        Debug.Log($"TimeLineName: {User.TimeLineName}");
-        Debug.Log($"TimeLineRoute: {User.TimeLineRoute}");
-    }
+    //    Debug.Log("\n=== User TimeLine ===");
+    //    Debug.Log($"TimeLineId: {User.TimeLineId}");
+    //    Debug.Log($"TimeLineName: {User.TimeLineName}");
+    //    Debug.Log($"TimeLineRoute: {User.TimeLineRoute}");
+    //} 
 
     // Get Identity User ID
     public async Task<Guid> GetIdentityUserID()
@@ -173,6 +174,26 @@ public class APIClient : MonoBehaviour
         }
 
         return responseDto;
+    }
+
+    // Put user data
+    public async Task PutChangeUserData(string currentProfilePicturePath)
+    {
+        var request = new PutChangeUserDataRequestDto()
+        {
+            id = User.UserID.ToString(),
+            identityUserId = User.IdentityUserID.ToString(),
+            displayName = User.DisplayName,
+            profilePhotoPath = currentProfilePicturePath
+        };
+        var jsondata = JsonUtility.ToJson(request);
+        var response = await PerformApiCall($"{_baseUrl}/api/User/{User.UserID}", "PUT", jsondata, User.AccessToken);
+
+        if (response == null)
+        {
+            Debug.Log("Failed to Update User Data");
+        }
+
     }
 
     // Get Dairy data by the user ID
@@ -210,7 +231,7 @@ public class APIClient : MonoBehaviour
     }
 
     // Change new dairy
-    public async Task SaveDairyToDatabase(string DairyContent)
+    public async Task PutChangeDairy(string DairyContent)
     {
         var request = new PutChangeDairyRequestDto()
         {
@@ -320,8 +341,6 @@ public class APIClient : MonoBehaviour
             await request.SendWebRequest();
             if (request.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("API-aanroep is successvol: " + request.downloadHandler.text);
-
                 return request.downloadHandler.text;
             }
             else
