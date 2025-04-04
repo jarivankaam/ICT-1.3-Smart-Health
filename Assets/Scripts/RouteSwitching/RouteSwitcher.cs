@@ -12,13 +12,13 @@ public class RouteSwitcher : MonoBehaviour
     {
         if (User.TimeLineRoute)
         {
-            chosenRoute.text = "Route B";
+            chosenRoute.text = "Wel Operatie";
             RouteB.SetActive(true);
             RouteA.SetActive(false);
         }
         else
         {
-            chosenRoute.text = "Route A";
+            chosenRoute.text = "Geen Operatie";
             RouteA.SetActive(true);
             RouteB.SetActive(false);
         }
@@ -28,7 +28,7 @@ public class RouteSwitcher : MonoBehaviour
     {
         if (!User.TimeLineRoute)
         {
-            chosenRoute.text = "Route B";
+            chosenRoute.text = "Wel Operatie";
             RouteB.SetActive(true);
             RouteA.SetActive(false);
             User.TimeLineRoute = true;
@@ -36,7 +36,7 @@ public class RouteSwitcher : MonoBehaviour
         }
         else
         {
-            chosenRoute.text = "Route A";
+            chosenRoute.text = "Geen Operatie";
             RouteA.SetActive(true);
             RouteB.SetActive(false);
             User.TimeLineRoute = false;
