@@ -4,6 +4,10 @@ using UnityEngine.Networking;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+
+
 
 public class APIClient : MonoBehaviour
 {
@@ -328,14 +332,42 @@ public class APIClient : MonoBehaviour
             ToolTipContent = "Agenda",
             Position = "Geen Positie",
             Type = "Agenda",
-            userID = userid.ToString(),
-            TimeLineId = timelineid.Id.ToString()
+            userID = "FA90AFDC-228A-4EC4-8702-C3E7488172E8",
+            TimeLineId = "175CBE15-EF68-4FE7-A9E6-10E0A3877225"
         };
         var jsondata = JsonUtility.ToJson(request);
         var response = await PerformApiCall($"{_baseUrl}/api/TimeLineItems", "POST", jsondata, User.AccessToken);
 
 
     }
+
+    public async Task<List<GetAgendaItemsDto>> GetAgendaItems()
+    {
+        var response = await PerformApiCall($"{_baseUrl}/api/TimeLineItems/type/Agenda", "GET", null, User.AccessToken);
+        // First, try parse as array
+        try
+        {
+            var items = JsonConvert.DeserializeObject<List<GetAgendaItemsDto>>(response);
+            return items;
+        }
+        catch
+        {
+            // Fallback: maybe it's just a single object
+            try
+            {
+                var item = JsonConvert.DeserializeObject<GetAgendaItemsDto>(response);
+                return new List<GetAgendaItemsDto> { item };
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("Failed to parse agenda items: " + ex.Message);
+                return new List<GetAgendaItemsDto>();
+            }
+        }
+    }
+
+
+
 
     // API call
     private async Task<string> PerformApiCall(string url, string method, string jsonData = null, string token = null)
