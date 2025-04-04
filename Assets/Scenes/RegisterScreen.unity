@@ -1129,7 +1129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36c4c7e39a32e44d9cd1d5183621082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseUrl: https://localhost:7109
+  _baseUrl: https://avansict20.azurewebsites.net
 --- !u!4 &640000821
 Transform:
   m_ObjectHideFlags: 0
