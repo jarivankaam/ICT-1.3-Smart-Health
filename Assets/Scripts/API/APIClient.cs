@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 public class APIClient : MonoBehaviour
 {
-    [SerializeField] private string _baseUrl = "https://localhost:7109/";
+    [SerializeField] private string _baseUrl = "https://avansict20.azurewebsites.net/";
     public UserData User = new UserData();
     public string GetAccessToken() => User.AccessToken;
     public string GetRefreshToken() => User.RefreshToken;
